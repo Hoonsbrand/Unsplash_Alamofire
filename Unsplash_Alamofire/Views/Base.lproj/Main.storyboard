@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0DH-Ys-VTw">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--HomeVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="Unsplash_Alamofire" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8X-o9-FbC" userLabel="Container">
+                                <rect key="frame" x="20" y="159" width="350" height="400"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UnsplashImage" translatesAutoresizingMaskIntoConstraints="NO" id="yj3-oH-mpO">
+                                        <rect key="frame" x="100" y="8" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="9Fw-nM-zQf"/>
+                                            <constraint firstAttribute="width" constant="150" id="pcF-0N-bwL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JJN-kH-Pwa">
+                                        <rect key="frame" x="100" y="174" width="150" height="32"/>
+                                        <segments>
+                                            <segment title="" image="photo" catalog="system"/>
+                                            <segment title="" image="person.fill" catalog="system"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="searchFilterValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="z0c-4Y-ZId"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <searchBar contentMode="redraw" placeholder="사진 키워드 입력" translatesAutoresizingMaskIntoConstraints="NO" id="oN0-nd-YvO">
+                                        <rect key="frame" x="0.0" y="223" width="350" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="CFS-C7-7yh"/>
+                                        </connections>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnG-Yf-nzr">
+                                        <rect key="frame" x="135" y="299" width="80" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="YtO-K3-0d4"/>
+                                            <constraint firstAttribute="width" constant="80" id="rnz-4E-fpc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="검색"/>
+                                        <connections>
+                                            <action selector="onSearchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JZY-0l-aoU"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-cZ-OIM">
+                                        <rect key="frame" x="165" y="309" width="20" height="20"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="DnG-Yf-nzr" firstAttribute="top" secondItem="oN0-nd-YvO" secondAttribute="bottom" constant="20" id="5yo-ut-ygY"/>
+                                    <constraint firstItem="yj3-oH-mpO" firstAttribute="trailing" secondItem="JJN-kH-Pwa" secondAttribute="trailing" id="9Hb-SL-3cm"/>
+                                    <constraint firstItem="JJN-kH-Pwa" firstAttribute="top" secondItem="yj3-oH-mpO" secondAttribute="bottom" constant="16" id="9ga-qi-SwU"/>
+                                    <constraint firstItem="aOZ-cZ-OIM" firstAttribute="centerY" secondItem="DnG-Yf-nzr" secondAttribute="centerY" id="BXK-DA-wt3"/>
+                                    <constraint firstAttribute="height" constant="400" id="MBj-8J-hun"/>
+                                    <constraint firstItem="JJN-kH-Pwa" firstAttribute="leading" secondItem="yj3-oH-mpO" secondAttribute="leading" id="Xuc-Wo-SHE"/>
+                                    <constraint firstItem="yj3-oH-mpO" firstAttribute="centerX" secondItem="C8X-o9-FbC" secondAttribute="centerX" id="bAp-Ux-ZX9"/>
+                                    <constraint firstItem="oN0-nd-YvO" firstAttribute="top" secondItem="JJN-kH-Pwa" secondAttribute="bottom" constant="18" id="bAw-7C-pD5"/>
+                                    <constraint firstItem="aOZ-cZ-OIM" firstAttribute="centerX" secondItem="DnG-Yf-nzr" secondAttribute="centerX" id="bds-Mm-dgA"/>
+                                    <constraint firstItem="DnG-Yf-nzr" firstAttribute="centerX" secondItem="C8X-o9-FbC" secondAttribute="centerX" id="d57-6T-Z2R"/>
+                                    <constraint firstItem="yj3-oH-mpO" firstAttribute="top" secondItem="C8X-o9-FbC" secondAttribute="top" constant="8" id="lKX-Y0-yo9"/>
+                                    <constraint firstItem="oN0-nd-YvO" firstAttribute="leading" secondItem="C8X-o9-FbC" secondAttribute="leading" id="opF-5k-7A0"/>
+                                    <constraint firstAttribute="trailing" secondItem="oN0-nd-YvO" secondAttribute="trailing" id="zsd-oq-2d8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="C8X-o9-FbC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="CjJ-7W-OTO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="C8X-o9-FbC" secondAttribute="trailing" constant="20" id="IfM-35-rlc"/>
+                            <constraint firstItem="C8X-o9-FbC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="xvb-Hg-n3u"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="u9q-GT-uuc"/>
+                    <connections>
+                        <outlet property="searchBar" destination="oN0-nd-YvO" id="ocn-o2-TAQ"/>
+                        <outlet property="searchButton" destination="DnG-Yf-nzr" id="2Pq-Sn-rKs"/>
+                        <outlet property="searchFilterSegment" destination="JJN-kH-Pwa" id="XbR-zg-Dli"/>
+                        <outlet property="searchIndicator" destination="aOZ-cZ-OIM" id="aqU-At-7xc"/>
+                        <segue destination="OTr-e6-5Tk" kind="show" identifier="goToUserListVC" id="gOQ-RI-MtN"/>
+                        <segue destination="aoL-Rl-udD" kind="show" identifier="goToPhotoCollectionVC" id="Onp-9Y-cSz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1060" y="-28.436018957345969"/>
+        </scene>
+        <!--User ListVC-->
+        <scene sceneID="lIr-mE-2vy">
+            <objects>
+                <viewController id="OTr-e6-5Tk" customClass="UserListVC" customModule="Unsplash_Alamofire" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o22-de-aye">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="G2e-LL-VKp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gti-Yt-NVu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hA6-uB-RfS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2349" y="-270"/>
+        </scene>
+        <!--Photo CollectionVC-->
+        <scene sceneID="Vjs-jZ-SfB">
+            <objects>
+                <viewController id="aoL-Rl-udD" customClass="PhotoCollectionVC" customModule="Unsplash_Alamofire" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jI6-od-W71">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rz9-a1-iol"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="P3N-W4-GXN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FT9-8I-fVv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2349" y="519"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="F7K-o7-jsU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0DH-Ys-VTw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="v30-ky-vCB">
+                        <rect key="frame" x="0.0" y="47" width="390" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ub0-bb-s0E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sio-OE-Bhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130.76923076923077" y="-28.436018957345969"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="UnsplashImage" width="640" height="145.5"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  UserListVC.swift
 //  Unsplash_Alamofire
 //
 //  Created by hoonsbrand on 2022/10/06.
@@ -7,13 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class UserListVC: BaseVC {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
+    
+    
 }
-

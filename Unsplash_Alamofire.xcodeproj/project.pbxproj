@@ -7,23 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		375B41F2658F2BD602964173 /* Pods_Unsplash_Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47A8E24D85CFBB44E61FFED /* Pods_Unsplash_Alamofire.framework */; };
+		72B9835928EEA2C900F8F2D0 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835828EEA2C900F8F2D0 /* UserListVC.swift */; };
+		72B9835B28EEA30A00F8F2D0 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */; };
+		72B9836028EEC1D400F8F2D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835F28EEC1D400F8F2D0 /* Constants.swift */; };
+		72B9836228EEC37600F8F2D0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9836128EEC37600F8F2D0 /* BaseVC.swift */; };
 		72D9856528EE9E2200EB54F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9856428EE9E2200EB54F5 /* AppDelegate.swift */; };
 		72D9856728EE9E2200EB54F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9856628EE9E2200EB54F5 /* SceneDelegate.swift */; };
-		72D9856928EE9E2200EB54F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9856828EE9E2200EB54F5 /* ViewController.swift */; };
+		72D9856928EE9E2200EB54F5 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9856828EE9E2200EB54F5 /* HomeVC.swift */; };
 		72D9856C28EE9E2200EB54F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856A28EE9E2200EB54F5 /* Main.storyboard */; };
 		72D9856E28EE9E2300EB54F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856D28EE9E2300EB54F5 /* Assets.xcassets */; };
 		72D9857128EE9E2300EB54F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856F28EE9E2300EB54F5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5851F1274583191157292A24 /* Pods-Unsplash_Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash_Alamofire.release.xcconfig"; path = "Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire.release.xcconfig"; sourceTree = "<group>"; };
+		72B9835828EEA2C900F8F2D0 /* UserListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
+		72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
+		72B9835F28EEC1D400F8F2D0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		72B9836128EEC37600F8F2D0 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		72D9856128EE9E2200EB54F5 /* Unsplash_Alamofire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash_Alamofire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D9856428EE9E2200EB54F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72D9856628EE9E2200EB54F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		72D9856828EE9E2200EB54F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		72D9856828EE9E2200EB54F5 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		72D9856B28EE9E2200EB54F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72D9856D28EE9E2300EB54F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72D9857028EE9E2300EB54F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72D9857228EE9E2300EB54F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B47A8E24D85CFBB44E61FFED /* Pods_Unsplash_Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB9D6F460FA0F6BACCEE34B0 /* Pods-Unsplash_Alamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash_Alamofire.debug.xcconfig"; path = "Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +43,65 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				375B41F2658F2BD602964173 /* Pods_Unsplash_Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		113512CE82991DBF588D97AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B47A8E24D85CFBB44E61FFED /* Pods_Unsplash_Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3FA7693D25A9F6DBF1AD04DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB9D6F460FA0F6BACCEE34B0 /* Pods-Unsplash_Alamofire.debug.xcconfig */,
+				5851F1274583191157292A24 /* Pods-Unsplash_Alamofire.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		72B9835C28EEB08800F8F2D0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				72D9856828EE9E2200EB54F5 /* HomeVC.swift */,
+				72B9835828EEA2C900F8F2D0 /* UserListVC.swift */,
+				72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */,
+				72B9836128EEC37600F8F2D0 /* BaseVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		72B9835D28EEB0A100F8F2D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72D9856A28EE9E2200EB54F5 /* Main.storyboard */,
+				72D9856F28EE9E2300EB54F5 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		72B9835E28EEC1C400F8F2D0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				72B9835F28EEC1D400F8F2D0 /* Constants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		72D9855828EE9E2200EB54F5 = {
 			isa = PBXGroup;
 			children = (
 				72D9856328EE9E2200EB54F5 /* Unsplash_Alamofire */,
 				72D9856228EE9E2200EB54F5 /* Products */,
+				3FA7693D25A9F6DBF1AD04DB /* Pods */,
+				113512CE82991DBF588D97AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +118,10 @@
 			children = (
 				72D9856428EE9E2200EB54F5 /* AppDelegate.swift */,
 				72D9856628EE9E2200EB54F5 /* SceneDelegate.swift */,
-				72D9856828EE9E2200EB54F5 /* ViewController.swift */,
-				72D9856A28EE9E2200EB54F5 /* Main.storyboard */,
+				72B9835E28EEC1C400F8F2D0 /* Utils */,
+				72B9835D28EEB0A100F8F2D0 /* Views */,
+				72B9835C28EEB08800F8F2D0 /* Controllers */,
 				72D9856D28EE9E2300EB54F5 /* Assets.xcassets */,
-				72D9856F28EE9E2300EB54F5 /* LaunchScreen.storyboard */,
 				72D9857228EE9E2300EB54F5 /* Info.plist */,
 			);
 			path = Unsplash_Alamofire;
@@ -74,9 +134,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72D9857528EE9E2300EB54F5 /* Build configuration list for PBXNativeTarget "Unsplash_Alamofire" */;
 			buildPhases = (
+				FD820C7FC256F64306A0618F /* [CP] Check Pods Manifest.lock */,
 				72D9855D28EE9E2200EB54F5 /* Sources */,
 				72D9855E28EE9E2200EB54F5 /* Frameworks */,
 				72D9855F28EE9E2200EB54F5 /* Resources */,
+				77E7BFDBCD504CCE2ABB6A6D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,14 +195,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		77E7BFDBCD504CCE2ABB6A6D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD820C7FC256F64306A0618F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Unsplash_Alamofire-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		72D9855D28EE9E2200EB54F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72D9856928EE9E2200EB54F5 /* ViewController.swift in Sources */,
+				72D9856928EE9E2200EB54F5 /* HomeVC.swift in Sources */,
 				72D9856528EE9E2200EB54F5 /* AppDelegate.swift in Sources */,
 				72D9856728EE9E2200EB54F5 /* SceneDelegate.swift in Sources */,
+				72B9835928EEA2C900F8F2D0 /* UserListVC.swift in Sources */,
+				72B9835B28EEA30A00F8F2D0 /* PhotoCollectionVC.swift in Sources */,
+				72B9836228EEC37600F8F2D0 /* BaseVC.swift in Sources */,
+				72B9836028EEC1D400F8F2D0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +390,7 @@
 		};
 		72D9857628EE9E2300EB54F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB9D6F460FA0F6BACCEE34B0 /* Pods-Unsplash_Alamofire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -291,10 +400,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Unsplash_Alamofire/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,14 +411,18 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hoonsbrand.Unsplash-Alamofire";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		72D9857728EE9E2300EB54F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5851F1274583191157292A24 /* Pods-Unsplash_Alamofire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -319,10 +432,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Unsplash_Alamofire/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +443,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hoonsbrand.Unsplash-Alamofire";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
