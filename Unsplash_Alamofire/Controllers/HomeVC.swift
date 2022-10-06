@@ -143,11 +143,14 @@ class HomeVC: UIViewController {
         self.searchBar.becomeFirstResponder()
     }
     
+    // 검색버튼 클릭
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedSegmentIndex: \(searchFilterSegment.selectedSegmentIndex)")
         
+        
+        
         // 화면으로 이동
-        pushVC()
+//        pushVC()
     }
     
 }
