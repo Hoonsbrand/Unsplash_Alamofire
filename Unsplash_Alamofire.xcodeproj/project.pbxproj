@@ -13,6 +13,11 @@
 		72B9836028EEC1D400F8F2D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835F28EEC1D400F8F2D0 /* Constants.swift */; };
 		72B9836228EEC37600F8F2D0 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9836128EEC37600F8F2D0 /* BaseVC.swift */; };
 		72B9836428EEF12A00F8F2D0 /* UnsplashInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72B9836328EEF12A00F8F2D0 /* UnsplashInfo.plist */; };
+		72B9836728EEF93200F8F2D0 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9836628EEF93200F8F2D0 /* AlamofireManager.swift */; };
+		72B9836928EEFA7800F8F2D0 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9836828EEFA7800F8F2D0 /* BaseInterceptor.swift */; };
+		72B9836B28EF0C9100F8F2D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9836A28EF0C9100F8F2D0 /* Logger.swift */; };
+		72B9836D28EF0DB400F8F2D0 /* ApiStatusLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9836C28EF0DB400F8F2D0 /* ApiStatusLogger.swift */; };
+		72B9836F28EF0E9300F8F2D0 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9836E28EF0E9300F8F2D0 /* SearchRouter.swift */; };
 		72D9856528EE9E2200EB54F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9856428EE9E2200EB54F5 /* AppDelegate.swift */; };
 		72D9856728EE9E2200EB54F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9856628EE9E2200EB54F5 /* SceneDelegate.swift */; };
 		72D9856928EE9E2200EB54F5 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D9856828EE9E2200EB54F5 /* HomeVC.swift */; };
@@ -28,6 +33,11 @@
 		72B9835F28EEC1D400F8F2D0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		72B9836128EEC37600F8F2D0 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		72B9836328EEF12A00F8F2D0 /* UnsplashInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UnsplashInfo.plist; sourceTree = "<group>"; };
+		72B9836628EEF93200F8F2D0 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
+		72B9836828EEFA7800F8F2D0 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
+		72B9836A28EF0C9100F8F2D0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		72B9836C28EF0DB400F8F2D0 /* ApiStatusLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStatusLogger.swift; sourceTree = "<group>"; };
+		72B9836E28EF0E9300F8F2D0 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		72D9856128EE9E2200EB54F5 /* Unsplash_Alamofire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash_Alamofire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D9856428EE9E2200EB54F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72D9856628EE9E2200EB54F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +107,18 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		72B9836528EEF91E00F8F2D0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				72B9836628EEF93200F8F2D0 /* AlamofireManager.swift */,
+				72B9836828EEFA7800F8F2D0 /* BaseInterceptor.swift */,
+				72B9836A28EF0C9100F8F2D0 /* Logger.swift */,
+				72B9836C28EF0DB400F8F2D0 /* ApiStatusLogger.swift */,
+				72B9836E28EF0E9300F8F2D0 /* SearchRouter.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		72D9855828EE9E2200EB54F5 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +140,7 @@
 		72D9856328EE9E2200EB54F5 /* Unsplash_Alamofire */ = {
 			isa = PBXGroup;
 			children = (
+				72B9836528EEF91E00F8F2D0 /* API */,
 				72D9856428EE9E2200EB54F5 /* AppDelegate.swift */,
 				72D9856628EE9E2200EB54F5 /* SceneDelegate.swift */,
 				72B9835E28EEC1C400F8F2D0 /* Utils */,
@@ -246,10 +269,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72B9836F28EF0E9300F8F2D0 /* SearchRouter.swift in Sources */,
+				72B9836D28EF0DB400F8F2D0 /* ApiStatusLogger.swift in Sources */,
 				72D9856928EE9E2200EB54F5 /* HomeVC.swift in Sources */,
 				72D9856528EE9E2200EB54F5 /* AppDelegate.swift in Sources */,
+				72B9836928EEFA7800F8F2D0 /* BaseInterceptor.swift in Sources */,
 				72D9856728EE9E2200EB54F5 /* SceneDelegate.swift in Sources */,
 				72B9835928EEA2C900F8F2D0 /* UserListVC.swift in Sources */,
+				72B9836B28EF0C9100F8F2D0 /* Logger.swift in Sources */,
+				72B9836728EEF93200F8F2D0 /* AlamofireManager.swift in Sources */,
 				72B9835B28EEA30A00F8F2D0 /* PhotoCollectionVC.swift in Sources */,
 				72B9836228EEC37600F8F2D0 /* BaseVC.swift in Sources */,
 				72B9836028EEC1D400F8F2D0 /* Constants.swift in Sources */,

@@ -13,5 +13,27 @@ enum SEGUE_ID {
 }
 
 enum API {
-    static let BASE_URL: String = "https://api.unsplash.com/search/photos?page=3&client_id=uq2skkJ3N2O7zSRHZtoxEOAyzJLkrNXxyx184o0F700&query=cat"
+    static let BASE_URL: String = "https://api.unsplash.com/"
+    static let CLIENT_ID: String = Bundle.main.UNSPLASH_API_KEY
+}
+
+enum NOTIFICATION {
+    enum API {
+        static let AUTH_FAIL = "authentication_fail"
+    }
+}
+
+extension Bundle {
+    var UNSPLASH_API_KEY: String {
+        guard let file = self.path(forResource: "UnsplashInfo", ofType: "plist") else { return "" }
+        
+        // .plist를 딕셔너리로 받아오기
+        guard let resource = NSDictionary(contentsOfFile: file) else { return "" }
+        
+        // 딕셔너리에서 값 찾기
+        guard let key = resource["UNSPLASH_API_KEY"] as? String else {
+            fatalError("UNSPLASH_API_KEY error")
+        }
+        return key
+    }
 }

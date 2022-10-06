@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import Toast_Swift
 
-class HomeVC: UIViewController {
+class HomeVC: BaseVC {
 
     @IBOutlet weak var searchFilterSegment: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -85,6 +85,7 @@ class HomeVC: UIViewController {
         }
     }
     
+    
     // MARK: - fileprivate methods
     fileprivate func pushVC() {
         var segueId: String = ""
@@ -147,8 +148,40 @@ class HomeVC: UIViewController {
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedSegmentIndex: \(searchFilterSegment.selectedSegmentIndex)")
         
+//        let url = API.BASE_URL + "search/photos"
+//
+        guard let userInput = self.searchBar.text else { return }
+//
+//        let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
+        
+//        AF.request(url, parameters: queryParam).response { response in
+//            debugPrint(response)
+//        }
+        
+        var urlToCall: URLRequestConvertible?
+        
+        switch searchFilterSegment.selectedSegmentIndex {
+        case 0:
+            urlToCall = SearchRouter.searchPhotos(term: userInput)
+        case 1:
+            urlToCall = SearchRouter.searchUsers(term: userInput)
+        default:
+            print("default")
+        }
+        
+        if let urlConvertible = urlToCall {
+            AlamofireManager
+                .shared
+                .session
+                .request(urlConvertible)
+                .validate(statusCode: 200...400)
+                .responseData { response in
+                    debugPrint(response)
+                }
+        }
         
         
+//
         // 화면으로 이동
 //        pushVC()
     }
@@ -219,9 +252,5 @@ extension HomeVC: UIGestureRecognizerDelegate {
             print("화면 터치")
             return true
         }
-        
-        
-        
-        
     }
 }
