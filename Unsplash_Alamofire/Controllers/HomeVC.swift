@@ -147,16 +147,8 @@ class HomeVC: BaseVC {
     // 검색버튼 클릭
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedSegmentIndex: \(searchFilterSegment.selectedSegmentIndex)")
-        
-//        let url = API.BASE_URL + "search/photos"
-//
+
         guard let userInput = self.searchBar.text else { return }
-//
-//        let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
-        
-//        AF.request(url, parameters: queryParam).response { response in
-//            debugPrint(response)
-//        }
         
         var urlToCall: URLRequestConvertible?
         
@@ -171,17 +163,15 @@ class HomeVC: BaseVC {
         
         if let urlConvertible = urlToCall {
             AlamofireManager
-                .shared
-                .session
-                .request(urlConvertible)
-                .validate(statusCode: 200...400)
-                .responseData { response in
+                .shared                                 // AlamofireManager의 싱글톤 객체인 shared
+                .session                                // AlamofireManager에서 만든 세션
+                .request(urlConvertible)                // 만들어 놓은 세션에서 request에 접근
+                .validate(statusCode: 200...400)        // 유효성 검사 - 유효성검사는 요청에 대한 response를 하기 전에 .validate()를                                         호출함으로써 유효하지 않은 상태 코드나 MIME타입이 있는 경우 response하지 않도록 한다.
+                .responseData { response in             // 유효성 검사를 통과하면 data 응답 받음
                     debugPrint(response)
                 }
         }
         
-        
-//
         // 화면으로 이동
 //        pushVC()
     }

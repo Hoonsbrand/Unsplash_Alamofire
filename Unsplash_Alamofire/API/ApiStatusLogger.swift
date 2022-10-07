@@ -20,3 +20,7 @@ final class ApiStatusLogger: EventMonitor {
 //        debugPrint(request)
     }
 }
+
+/*
+ Logger가 여러개 있을 수도 있다는 예시
+ */
