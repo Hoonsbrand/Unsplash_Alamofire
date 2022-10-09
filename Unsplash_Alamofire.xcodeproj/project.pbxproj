@@ -24,6 +24,9 @@
 		72D9856C28EE9E2200EB54F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856A28EE9E2200EB54F5 /* Main.storyboard */; };
 		72D9856E28EE9E2300EB54F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856D28EE9E2300EB54F5 /* Assets.xcassets */; };
 		72D9857128EE9E2300EB54F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856F28EE9E2300EB54F5 /* LaunchScreen.storyboard */; };
+		72F86F5B28F2A1D00030C79F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F86F5A28F2A1D00030C79F /* Photo.swift */; };
+		72F86F5F28F2A2F30030C79F /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F86F5E28F2A2F30030C79F /* CustomError.swift */; };
+		72F86F8128F2C92B0030C79F /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F86F8028F2C92B0030C79F /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		72D9856D28EE9E2300EB54F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72D9857028EE9E2300EB54F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72D9857228EE9E2300EB54F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72F86F5A28F2A1D00030C79F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		72F86F5E28F2A2F30030C79F /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		72F86F8028F2C92B0030C79F /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B47A8E24D85CFBB44E61FFED /* Pods_Unsplash_Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9D6F460FA0F6BACCEE34B0 /* Pods-Unsplash_Alamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash_Alamofire.debug.xcconfig"; path = "Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +101,7 @@
 			children = (
 				72D9856A28EE9E2200EB54F5 /* Main.storyboard */,
 				72D9856F28EE9E2300EB54F5 /* LaunchScreen.storyboard */,
+				72F86F8028F2C92B0030C79F /* PhotoCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				72B9835F28EEC1D400F8F2D0 /* Constants.swift */,
+				72F86F5E28F2A2F30030C79F /* CustomError.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -140,9 +148,10 @@
 		72D9856328EE9E2200EB54F5 /* Unsplash_Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				72B9836528EEF91E00F8F2D0 /* API */,
 				72D9856428EE9E2200EB54F5 /* AppDelegate.swift */,
 				72D9856628EE9E2200EB54F5 /* SceneDelegate.swift */,
+				72F86F5928F2A1C20030C79F /* Model */,
+				72B9836528EEF91E00F8F2D0 /* API */,
 				72B9835E28EEC1C400F8F2D0 /* Utils */,
 				72B9835D28EEB0A100F8F2D0 /* Views */,
 				72B9835C28EEB08800F8F2D0 /* Controllers */,
@@ -151,6 +160,14 @@
 				72B9836328EEF12A00F8F2D0 /* UnsplashInfo.plist */,
 			);
 			path = Unsplash_Alamofire;
+			sourceTree = "<group>";
+		};
+		72F86F5928F2A1C20030C79F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				72F86F5A28F2A1D00030C79F /* Photo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,9 +292,12 @@
 				72D9856528EE9E2200EB54F5 /* AppDelegate.swift in Sources */,
 				72B9836928EEFA7800F8F2D0 /* BaseInterceptor.swift in Sources */,
 				72D9856728EE9E2200EB54F5 /* SceneDelegate.swift in Sources */,
+				72F86F5B28F2A1D00030C79F /* Photo.swift in Sources */,
+				72F86F5F28F2A2F30030C79F /* CustomError.swift in Sources */,
 				72B9835928EEA2C900F8F2D0 /* UserListVC.swift in Sources */,
 				72B9836B28EF0C9100F8F2D0 /* Logger.swift in Sources */,
 				72B9836728EEF93200F8F2D0 /* AlamofireManager.swift in Sources */,
+				72F86F8128F2C92B0030C79F /* PhotoCollectionViewCell.swift in Sources */,
 				72B9835B28EEA30A00F8F2D0 /* PhotoCollectionVC.swift in Sources */,
 				72B9836228EEC37600F8F2D0 /* BaseVC.swift in Sources */,
 				72B9836028EEC1D400F8F2D0 /* Constants.swift in Sources */,
@@ -434,7 +454,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -466,7 +486,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

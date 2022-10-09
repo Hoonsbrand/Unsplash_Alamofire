@@ -18,6 +18,8 @@ class HomeVC: BaseVC {
     
     private var keyboardDissmissTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
     
+    private var fetchedPhotos = [Photo]()
+    
     // MARK: - override method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +79,9 @@ class HomeVC: BaseVC {
             // 다음 화면의 뷰컨트롤러를 가져온다.
             let nextVC = segue.destination as! PhotoCollectionVC
             guard let userInputValue = self.searchBar.text else { return }
-            
+
             nextVC.getVCTitle(userInputValue + "🏞")
+            nextVC.input = userInputValue
             
         default:
             print("default")
@@ -105,6 +108,7 @@ class HomeVC: BaseVC {
         // 화면이동
         self.performSegue(withIdentifier: segueId, sender: self)
     }
+    
     
     @objc func keyboardWillShowHandle(notification: NSNotification) {
         print("HomeVC - keyboardWillShowHandle() called")
@@ -148,32 +152,47 @@ class HomeVC: BaseVC {
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedSegmentIndex: \(searchFilterSegment.selectedSegmentIndex)")
 
-        guard let userInput = self.searchBar.text else { return }
+//        guard let userInput = self.searchBar.text else { return }
         
-        var urlToCall: URLRequestConvertible?
-        
-        switch searchFilterSegment.selectedSegmentIndex {
-        case 0:
-            urlToCall = SearchRouter.searchPhotos(term: userInput)
-        case 1:
-            urlToCall = SearchRouter.searchUsers(term: userInput)
-        default:
-            print("default")
-        }
-        
-        if let urlConvertible = urlToCall {
-            AlamofireManager
-                .shared                                 // AlamofireManager의 싱글톤 객체인 shared
-                .session                                // AlamofireManager에서 만든 세션
-                .request(urlConvertible)                // 만들어 놓은 세션에서 request에 접근
-                .validate(statusCode: 200...400)        // 유효성 검사 - 유효성검사는 요청에 대한 response를 하기 전에 .validate()를                                         호출함으로써 유효하지 않은 상태 코드나 MIME타입이 있는 경우 response하지 않도록 한다.
-                .responseData { response in             // 유효성 검사를 통과하면 data 응답 받음
-                    debugPrint(response)
-                }
-        }
-        
+//        switch searchFilterSegment.selectedSegmentIndex {
+//        case 0:
+//            print("d")
+////            AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
+////                guard let self = self else { return }
+////
+////                switch result {
+////                case .success(let fetchedPhotos):
+////                    print("HomeVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
+////
+////                    self.fetchedPhotos = fetchedPhotos
+////
+////                case .failure(let error):
+////                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+////                    print("HomeVC - getPhotos.failure - error : \(error.rawValue)")
+////                }
+////            }
+//
+//        case 1:
+//            AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
+//                guard let self = self else { return }
+//
+//                switch result {
+//                case .success(let fetchedUsers):
+//                    print("HomeVC - getUsers.success - fetchedUsers.count : \(fetchedUsers.count)")
+//
+//                case .failure(let error):
+//                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+//                    print("HomeVC - getUsers.failure - error : \(error.rawValue)")
+//                }
+//            }
+//
+//        default:
+//            print("default")
+//        }
+
         // 화면으로 이동
-//        pushVC()
+        self.pushVC()
+        
     }
     
 }
