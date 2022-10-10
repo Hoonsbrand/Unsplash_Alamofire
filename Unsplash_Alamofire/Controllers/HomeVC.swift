@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import Toast_Swift
+import KRProgressHUD
 
 class HomeVC: BaseVC {
 
@@ -81,7 +82,9 @@ class HomeVC: BaseVC {
             guard let userInputValue = self.searchBar.text else { return }
 
             nextVC.getVCTitle(userInputValue + "🏞")
+            print("PREPARE")
             nextVC.input = userInputValue
+            nextVC.photos = self.fetchedPhotos
             
         default:
             print("default")
@@ -152,47 +155,61 @@ class HomeVC: BaseVC {
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedSegmentIndex: \(searchFilterSegment.selectedSegmentIndex)")
 
-//        guard let userInput = self.searchBar.text else { return }
+        guard let userInput = self.searchBar.text else { return }
         
-//        switch searchFilterSegment.selectedSegmentIndex {
-//        case 0:
-//            print("d")
-////            AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
-////                guard let self = self else { return }
-////
-////                switch result {
-////                case .success(let fetchedPhotos):
-////                    print("HomeVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
-////
-////                    self.fetchedPhotos = fetchedPhotos
-////
-////                case .failure(let error):
-////                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
-////                    print("HomeVC - getPhotos.failure - error : \(error.rawValue)")
-////                }
-////            }
-//
-//        case 1:
-//            AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
-//                guard let self = self else { return }
-//
-//                switch result {
-//                case .success(let fetchedUsers):
-//                    print("HomeVC - getUsers.success - fetchedUsers.count : \(fetchedUsers.count)")
-//
-//                case .failure(let error):
-//                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
-//                    print("HomeVC - getUsers.failure - error : \(error.rawValue)")
-//                }
-//            }
-//
-//        default:
-//            print("default")
-//        }
+        switch searchFilterSegment.selectedSegmentIndex {
+        case 0:
+            
+            AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
+                guard let self = self else { return }
 
-        // 화면으로 이동
-        self.pushVC()
-        
+                switch result {
+                case .success(let fetchedPhotos):
+                    print("HomeVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
+                    
+                    KRProgressHUD.show()
+                    
+                    /*DispatchGroup 을 사용하는 이유
+                     dispatch_group_async 를 통해 이미 group 안에 들어간 job 들이
+                     끝나기를 기다렸다가 모두 완료되면 호출되기를 기대할 때 사용한다. */
+                    
+                    let getPhotoGroup = DispatchGroup()
+                    getPhotoGroup.enter()
+                    
+                    DispatchQueue.global(qos: .userInteractive).async {
+                        self.fetchedPhotos = fetchedPhotos
+                        print("DISPATHGROUP START")
+                        getPhotoGroup.leave()
+                    }
+                    
+                    getPhotoGroup.wait()
+                    print("DISPATHGROUP DONE")
+                    KRProgressHUD.showSuccess()
+                    self.pushVC()
+
+                case .failure(let error):
+                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+                    print("HomeVC - getPhotos.failure - error : \(error.rawValue)")
+                }
+            }
+
+        case 1:
+            AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .success(let fetchedUsers):
+                    print("HomeVC - getUsers.success - fetchedUsers.count : \(fetchedUsers.count)")
+
+                case .failure(let error):
+                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+                    print("HomeVC - getUsers.failure - error : \(error.rawValue)")
+                }
+            }
+
+        default:
+            print("default")
+        }
     }
     
 }

@@ -9,9 +9,12 @@ import Foundation
 import Alamofire
 
 class BaseInterceptor: RequestInterceptor {
+    
+    var pageClass = Page.shared
+    
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         print("BaseInterceptor - adapt() called")
-        
+            
         var request = urlRequest
         
         // API호출 시 adapt에서 가로채서 urlRequest에 application/json과 accessToken을 추가한 urlRequest으로 다시 반환
@@ -21,10 +24,13 @@ class BaseInterceptor: RequestInterceptor {
         
         // 공통 파라미터 추가
         var dictionary = [String: String]()
-
+        
+        var page = pageClass.page
+        
         dictionary.updateValue(API.CLIENT_ID, forKey: "client_id")
         dictionary.updateValue("30", forKey: "per_page")
-
+        dictionary.updateValue("\(page)", forKey: "page")
+        
         do {
             request = try URLEncodedFormParameterEncoder().encode(dictionary, into: request)
         } catch {
@@ -32,8 +38,6 @@ class BaseInterceptor: RequestInterceptor {
         }
         
         completion(.success(request))
-        
-        
     }
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {

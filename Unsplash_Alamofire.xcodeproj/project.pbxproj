@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		375B41F2658F2BD602964173 /* Pods_Unsplash_Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47A8E24D85CFBB44E61FFED /* Pods_Unsplash_Alamofire.framework */; };
+		722001C728F3E8E3005A1D0E /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722001C628F3E8E3005A1D0E /* Page.swift */; };
 		72B9835928EEA2C900F8F2D0 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835828EEA2C900F8F2D0 /* UserListVC.swift */; };
 		72B9835B28EEA30A00F8F2D0 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */; };
 		72B9836028EEC1D400F8F2D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835F28EEC1D400F8F2D0 /* Constants.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		5851F1274583191157292A24 /* Pods-Unsplash_Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash_Alamofire.release.xcconfig"; path = "Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire.release.xcconfig"; sourceTree = "<group>"; };
+		722001C628F3E8E3005A1D0E /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		72B9835828EEA2C900F8F2D0 /* UserListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
 		72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
 		72B9835F28EEC1D400F8F2D0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				72F86F5A28F2A1D00030C79F /* Photo.swift */,
+				722001C628F3E8E3005A1D0E /* Page.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			files = (
 				72B9836F28EF0E9300F8F2D0 /* SearchRouter.swift in Sources */,
 				72B9836D28EF0DB400F8F2D0 /* ApiStatusLogger.swift in Sources */,
+				722001C728F3E8E3005A1D0E /* Page.swift in Sources */,
 				72D9856928EE9E2200EB54F5 /* HomeVC.swift in Sources */,
 				72D9856528EE9E2200EB54F5 /* AppDelegate.swift in Sources */,
 				72B9836928EEFA7800F8F2D0 /* BaseInterceptor.swift in Sources */,
