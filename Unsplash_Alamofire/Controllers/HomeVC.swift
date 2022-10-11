@@ -20,6 +20,7 @@ class HomeVC: BaseVC {
     private var keyboardDissmissTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
     
     private var fetchedPhotos = [Photo]()
+    private var fetchedUsers = [User]()
     
     // MARK: - override method
     override func viewDidLoad() {
@@ -36,6 +37,7 @@ class HomeVC: BaseVC {
         // 포커싱 주기
         self.searchBar.becomeFirstResponder()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("HomeVC - viewWillAppear() called")
@@ -75,6 +77,9 @@ class HomeVC: BaseVC {
             guard let userInputValue = self.searchBar.text else { return }
             
             nextVC.getVCTitle(userInputValue + "👨‍💻")
+            print("PREPARE")
+            nextVC.input = userInputValue
+            nextVC.users = self.fetchedUsers
             
         case SEGUE_ID.PHOTO_COLLECTION_VC:
             // 다음 화면의 뷰컨트롤러를 가져온다.
@@ -155,11 +160,15 @@ class HomeVC: BaseVC {
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedSegmentIndex: \(searchFilterSegment.selectedSegmentIndex)")
 
+        callAlamofire()
+    }
+    
+    // MARK: - Call Alamofire method
+    private func callAlamofire() {
         guard let userInput = self.searchBar.text else { return }
         
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
-            
             AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
                 guard let self = self else { return }
 
@@ -192,15 +201,33 @@ class HomeVC: BaseVC {
                     print("HomeVC - getPhotos.failure - error : \(error.rawValue)")
                 }
             }
-
+            
         case 1:
-            AlamofireManager.shared.getPhotos(searchTerm: userInput) { [weak self] result in
+            print("CASE 1")
+            AlamofireManager.shared.getUsers(searchTerm: userInput) { [weak self] result in
+               print("CALL CASE 1 ALAMOFIRE")
                 guard let self = self else { return }
-
+                
                 switch result {
                 case .success(let fetchedUsers):
-                    print("HomeVC - getUsers.success - fetchedUsers.count : \(fetchedUsers.count)")
-
+                    print("HomeVC - getUsers.success - getUsers.count : \(fetchedUsers.count)")
+                    
+                    KRProgressHUD.show()
+                    
+                    let getUserGroup = DispatchGroup()
+                    getUserGroup.enter()
+                    
+                    DispatchQueue.global(qos: .userInteractive).async {
+                        self.fetchedUsers = fetchedUsers
+                        print("DISPATHGROUP START")
+                        getUserGroup.leave()
+                    }
+                    
+                    getUserGroup.wait()
+                    print("DISPATHGROUP DONE")
+                    KRProgressHUD.showSuccess()
+                    self.pushVC()
+                    
                 case .failure(let error):
                     self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
                     print("HomeVC - getUsers.failure - error : \(error.rawValue)")
@@ -223,10 +250,10 @@ extension HomeVC: UISearchBarDelegate {
         if searchText.isEmpty {
             self.searchButton.isHidden = true
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                // 포커싱 해제
-                searchBar.resignFirstResponder()
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+//                // 포커싱 해제
+//                searchBar.resignFirstResponder()
+//            }
 
         } else {
             self.searchButton.isHidden = false
@@ -241,7 +268,7 @@ extension HomeVC: UISearchBarDelegate {
         if userInputString.isEmpty {
             self.view.makeToast("💬검색 키워드를 입력해주세요", duration: 1.0, position: .center)
         } else {
-            pushVC()
+            callAlamofire()
             searchBar.resignFirstResponder()
         }
     }

@@ -10,7 +10,7 @@ import Alamofire
 
 class BaseInterceptor: RequestInterceptor {
     
-    var pageClass = Page.shared
+    var parameter = Parameter.shared
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         print("BaseInterceptor - adapt() called")
@@ -24,12 +24,15 @@ class BaseInterceptor: RequestInterceptor {
         
         // 공통 파라미터 추가
         var dictionary = [String: String]()
-        
-        var page = pageClass.page
+        var page = parameter.page
         
         dictionary.updateValue(API.CLIENT_ID, forKey: "client_id")
         dictionary.updateValue("30", forKey: "per_page")
         dictionary.updateValue("\(page)", forKey: "page")
+        
+        if let username = parameter.username {
+            dictionary.updateValue(username, forKey: "username")
+        }
         
         do {
             request = try URLEncodedFormParameterEncoder().encode(dictionary, into: request)

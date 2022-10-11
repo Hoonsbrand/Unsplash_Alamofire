@@ -33,6 +33,7 @@ final class AlamofireManager {
         session = Session(interceptor: interceptors, eventMonitors: monitors)
     }
     
+    // MARK: - Get Photos method
     func getPhotos(searchTerm userInput: String, completion: @escaping (Result<[Photo], CustomError>) -> Void) {
         
         print("AlamofireManager - getPhotos() called userInput : \(userInput)")
@@ -57,13 +58,13 @@ final class AlamofireManager {
                     print("index : \(index), subJson : \(subJson)")
                     
                     // 데이터 파싱
-                    guard let thumbnail = subJson["urls"]["thumb"].string,
+                    guard let image = subJson["urls"]["full"].string,
                           let username = subJson["user"]["username"].string,
                           let createdAt = subJson["created_at"].string else { return }
                     
                     let likesCount = subJson["likes"].intValue
                     
-                    let photoItem = Photo(thumbnail: thumbnail, username: username, likesCount: likesCount, createdAt: createdAt)
+                    let photoItem = Photo(image: image, username: username, likesCount: likesCount, createdAt: createdAt)
                     
                     // 배열에 넣고
                     photos.append(photoItem)
@@ -74,8 +75,50 @@ final class AlamofireManager {
                     completion(.failure(.noContent))
                 }
             }
+    }
+    
+    // MARK: - Get Users method
+    func getUsers(searchTerm userInput: String, completion: @escaping (Result<[User], CustomError>) -> Void) {
+        
+        print("AlamofireManager - getUsers() called userInput : \(userInput)")
+        self.session                                                            // AlamofireManager에서 만든 세션
+            .request(SearchRouter.searchUsers(term: userInput))                // 만들어 놓은 세션에서 request에 접근
+            .validate(statusCode: 200...400)                                    // 유효성 검사 - 유효성검사는 요청에 대한 response를 하기 전에 .validate()를 호출함으로써 유효하지 않은 상태 코드나 MIME타입이 있는 경우 response하지 않도록 한다.
+            .responseJSON { [weak self] response in                                         // 유효성 검사를 통과하면 data 응답 받음
                 
-            
+                guard let self = self else { return }
+                
+                guard let responseValue = response.value else { return }
+                
+                let responseJson = JSON(responseValue)
+                
+                let jsonArray = responseJson["results"]
+                
+                var users = [User]()
+                
+                print("jsonArray.size : \(jsonArray.count)")
+                
+                for (index, subJson) : (String, JSON) in jsonArray {
+                    print("index : \(index), subJson : \(subJson)")
+                    
+                    // 데이터 파싱
+                    guard let thumbnail = subJson["urls"]["thumb"].string,
+                          let username = subJson["user"]["username"].string else { return }
+                    
+                    let totalPhotos = subJson["user"]["total_photos"].intValue
+                    let likesCount = subJson["likes"].intValue
+                    
+                    let userItem = User(likes: likesCount, username: username, total_photos: totalPhotos, thumbnail: thumbnail)
+                    
+                    // 배열에 넣고
+                    users.append(userItem)
+                }
+                if users.count > 0 {
+                    completion(.success(users))
+                } else {
+                    completion(.failure(.noContent))
+                }
+            }
     }
 }
     

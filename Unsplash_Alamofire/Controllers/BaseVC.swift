@@ -9,6 +9,10 @@ import UIKit
 import Toast_Swift
 
 class BaseVC: UIViewController {
+    
+    var input: String = ""
+    var pageClass = Parameter.shared
+    
     var vcTitle: String = "" {
         didSet {
             print("UerListVC - vcTitle didSet() called / vcTitle : \(vcTitle)")
@@ -21,6 +25,7 @@ class BaseVC: UIViewController {
         self.vcTitle = title
     }
     
+    // MARK: - override methods
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // 인증 실패 Notification 등록
@@ -31,7 +36,11 @@ class BaseVC: UIViewController {
         super.viewWillDisappear(animated)
         // 인증 실패 Notification 등록 해제
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(NOTIFICATION.API.AUTH_FAIL), object: nil)
+        
+        // 페이지 증가하고 뒤로 갈때 다시 1로 초기화
+        pageClass.resetPage()
     }
+    
     
     // MARK: - objc methods
     @objc func showErrorPopup(notification: NSNotification) {
@@ -46,3 +55,6 @@ class BaseVC: UIViewController {
         }
     }
 }
+
+
+
