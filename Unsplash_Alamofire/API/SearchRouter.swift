@@ -14,30 +14,38 @@ import Alamofire
 
 // 검색관련 api
 // 라우터를 디자인하는게 중요한데 URLRequestConvertible 프로토콜이 그걸 가능하게 해준다는 내용.
+
 enum SearchRouter: URLRequestConvertible {
+    
     case searchPhotos(term: String)
     case searchUsers(term: String)
+    case searchUserPhotos
     
     // 기본 URL
     var baseURL: URL {
-        return URL(string: API.BASE_URL + "search/")!
+        if Parameter.shared.isUserPhotos {
+            // 특정 유저의 사진을 요청했을 때 URL
+            return URL(string: API.BASE_URL + "users/\(Parameter.shared.username!)/")!
+        } else {
+            return URL(string: API.BASE_URL + "search/")!
+        }
     }
     
     // HTTPMethod 분기처리
     var method: HTTPMethod {
         // 한가지 방식으로 할 때
         switch self {
-        case .searchPhotos, .searchUsers:
+        case .searchPhotos, .searchUsers, .searchUserPhotos:
             return .get
+            
+            // 두가지 이상 방식
+            //        switch self {
+            //        case .searchPhotos:
+            //            return .get
+            //        case .searchUsers:
+            //            return .post
+            //        }
         }
-        
-        // 두가지 이상 방식
-//        switch self {
-//        case .searchPhotos:
-//            return .get
-//        case .searchUsers:
-//            return .post
-//        }
     }
     
     // endPoint 설정 분기처리
@@ -47,45 +55,49 @@ enum SearchRouter: URLRequestConvertible {
             return "photos/"
         case .searchUsers:
             return "users/"
+        case .searchUserPhotos:
+            return "photos/"
         }
     }
     
     // 유저가 원하는 값을 파라미터로 전달하기위하여 query에 넣음
-    var parameters: [String: String] {
+    var parameters: [String: String]? {
         switch self {
         case let .searchPhotos(term), let .searchUsers(term):
             return ["query" : term]
+        case let .searchUserPhotos:
+            return nil
         }
     }
     
     // 위에서 설정한 값들을 바탕으로 request 객체 생성
     func asURLRequest() throws -> URLRequest {
-        
-        // 기본URL에 endPoint 추가 한 후! URL로 return
+    
         let url = baseURL.appendingPathComponent(endPoint)
-        
         print("MySearchRouter - asURLRequest() url : \(url)")
+        
         
         // URLRequest객체 생성
         var request = URLRequest(url: url)
         
         // 분기처리 된 method 적용
         request.method = method
-            
+        
         // 제일 밑 주석 참고
         request = try URLEncodedFormParameterEncoder().encode(parameters, into: request)
         
-//        switch self {
-//        case let .get(parameters):
-//            request = try URLEncodedFormParameterEncoder().encode(parameters, into: request)
-//        case let .post(parameters):
-//            request = try JSONParameterEncoder().encode(parameters, into: request)
-//        }
-//
+        //        switch self {
+        //        case let .get(parameters):
+        //            request = try URLEncodedFormParameterEncoder().encode(parameters, into: request)
+        //        case let .post(parameters):
+        //            request = try JSONParameterEncoder().encode(parameters, into: request)
+        //        }
+        //
         // request 객체 return
         return request
     }
 }
+
 
 /*
  Alamofire에는 ParameterEncoder를 따르는 JSONParameterEncoder와 URLEncodedFormParameterEncoder를 포함한다. 이 두가지 방식이 가장 흔히 사용되는 인코딩 방식이라고 한다.

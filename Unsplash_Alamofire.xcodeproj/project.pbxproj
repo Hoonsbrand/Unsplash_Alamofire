@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		375B41F2658F2BD602964173 /* Pods_Unsplash_Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47A8E24D85CFBB44E61FFED /* Pods_Unsplash_Alamofire.framework */; };
 		722001C728F3E8E3005A1D0E /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722001C628F3E8E3005A1D0E /* Parameter.swift */; };
-		722001C928F5367C005A1D0E /* UserListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722001C828F5367C005A1D0E /* UserListCollectionViewCell.swift */; };
 		722001CB28F53902005A1D0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722001CA28F53902005A1D0E /* User.swift */; };
+		723C9E0628F7DA5F002F1450 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723C9E0528F7DA5F002F1450 /* UserListTableViewCell.swift */; };
 		72B9835928EEA2C900F8F2D0 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835828EEA2C900F8F2D0 /* UserListVC.swift */; };
 		72B9835B28EEA30A00F8F2D0 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */; };
 		72B9836028EEC1D400F8F2D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B9835F28EEC1D400F8F2D0 /* Constants.swift */; };
@@ -27,6 +27,9 @@
 		72D9856C28EE9E2200EB54F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856A28EE9E2200EB54F5 /* Main.storyboard */; };
 		72D9856E28EE9E2300EB54F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856D28EE9E2300EB54F5 /* Assets.xcassets */; };
 		72D9857128EE9E2300EB54F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72D9856F28EE9E2300EB54F5 /* LaunchScreen.storyboard */; };
+		72E42B7328F7EBD300BDEF06 /* UserPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E42B7228F7EBD300BDEF06 /* UserPhotos.swift */; };
+		72E42B7528F7ED8000BDEF06 /* UserPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E42B7428F7ED8000BDEF06 /* UserPhotosViewController.swift */; };
+		72E42B7728F7EDB300BDEF06 /* UserPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E42B7628F7EDB300BDEF06 /* UserPhotosCollectionViewCell.swift */; };
 		72F86F5B28F2A1D00030C79F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F86F5A28F2A1D00030C79F /* Photo.swift */; };
 		72F86F5F28F2A2F30030C79F /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F86F5E28F2A2F30030C79F /* CustomError.swift */; };
 		72F86F8128F2C92B0030C79F /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F86F8028F2C92B0030C79F /* PhotoCollectionViewCell.swift */; };
@@ -35,8 +38,8 @@
 /* Begin PBXFileReference section */
 		5851F1274583191157292A24 /* Pods-Unsplash_Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash_Alamofire.release.xcconfig"; path = "Target Support Files/Pods-Unsplash_Alamofire/Pods-Unsplash_Alamofire.release.xcconfig"; sourceTree = "<group>"; };
 		722001C628F3E8E3005A1D0E /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
-		722001C828F5367C005A1D0E /* UserListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCollectionViewCell.swift; sourceTree = "<group>"; };
 		722001CA28F53902005A1D0E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		723C9E0528F7DA5F002F1450 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
 		72B9835828EEA2C900F8F2D0 /* UserListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
 		72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
 		72B9835F28EEC1D400F8F2D0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -55,6 +58,9 @@
 		72D9856D28EE9E2300EB54F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72D9857028EE9E2300EB54F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72D9857228EE9E2300EB54F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72E42B7228F7EBD300BDEF06 /* UserPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotos.swift; sourceTree = "<group>"; };
+		72E42B7428F7ED8000BDEF06 /* UserPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotosViewController.swift; sourceTree = "<group>"; };
+		72E42B7628F7EDB300BDEF06 /* UserPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		72F86F5A28F2A1D00030C79F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		72F86F5E28F2A2F30030C79F /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		72F86F8028F2C92B0030C79F /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 				72B9835828EEA2C900F8F2D0 /* UserListVC.swift */,
 				72B9835A28EEA30A00F8F2D0 /* PhotoCollectionVC.swift */,
 				72B9836128EEC37600F8F2D0 /* BaseVC.swift */,
+				72E42B7428F7ED8000BDEF06 /* UserPhotosViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -108,7 +115,8 @@
 				72D9856A28EE9E2200EB54F5 /* Main.storyboard */,
 				72D9856F28EE9E2300EB54F5 /* LaunchScreen.storyboard */,
 				72F86F8028F2C92B0030C79F /* PhotoCollectionViewCell.swift */,
-				722001C828F5367C005A1D0E /* UserListCollectionViewCell.swift */,
+				723C9E0528F7DA5F002F1450 /* UserListTableViewCell.swift */,
+				72E42B7628F7EDB300BDEF06 /* UserPhotosCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +183,7 @@
 				72F86F5A28F2A1D00030C79F /* Photo.swift */,
 				722001CA28F53902005A1D0E /* User.swift */,
 				722001C628F3E8E3005A1D0E /* Parameter.swift */,
+				72E42B7228F7EBD300BDEF06 /* UserPhotos.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,13 +308,16 @@
 				72B9836D28EF0DB400F8F2D0 /* ApiStatusLogger.swift in Sources */,
 				722001C728F3E8E3005A1D0E /* Parameter.swift in Sources */,
 				72D9856928EE9E2200EB54F5 /* HomeVC.swift in Sources */,
-				722001C928F5367C005A1D0E /* UserListCollectionViewCell.swift in Sources */,
 				72D9856528EE9E2200EB54F5 /* AppDelegate.swift in Sources */,
 				72B9836928EEFA7800F8F2D0 /* BaseInterceptor.swift in Sources */,
 				72D9856728EE9E2200EB54F5 /* SceneDelegate.swift in Sources */,
+				72E42B7728F7EDB300BDEF06 /* UserPhotosCollectionViewCell.swift in Sources */,
 				72F86F5B28F2A1D00030C79F /* Photo.swift in Sources */,
+				72E42B7528F7ED8000BDEF06 /* UserPhotosViewController.swift in Sources */,
 				72F86F5F28F2A2F30030C79F /* CustomError.swift in Sources */,
 				72B9835928EEA2C900F8F2D0 /* UserListVC.swift in Sources */,
+				72E42B7328F7EBD300BDEF06 /* UserPhotos.swift in Sources */,
+				723C9E0628F7DA5F002F1450 /* UserListTableViewCell.swift in Sources */,
 				72B9836B28EF0C9100F8F2D0 /* Logger.swift in Sources */,
 				72B9836728EEF93200F8F2D0 /* AlamofireManager.swift in Sources */,
 				72F86F8128F2C92B0030C79F /* PhotoCollectionViewCell.swift in Sources */,

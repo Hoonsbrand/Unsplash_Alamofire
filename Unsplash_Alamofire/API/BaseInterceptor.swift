@@ -30,9 +30,10 @@ class BaseInterceptor: RequestInterceptor {
         dictionary.updateValue("30", forKey: "per_page")
         dictionary.updateValue("\(page)", forKey: "page")
         
-        if let username = parameter.username {
-            dictionary.updateValue(username, forKey: "username")
-        }
+//        if parameter.isUserPhotos {
+//            guard let username = parameter.username else { return }
+//            dictionary.updateValue(username, forKey: "username")
+//        }
         
         do {
             request = try URLEncodedFormParameterEncoder().encode(dictionary, into: request)

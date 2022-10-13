@@ -11,8 +11,8 @@ class Parameter {
     static var shared = Parameter()
     
     var page = 1
-    
     var username: String?
+    var isUserPhotos: Bool = false
     
     func increasePage() {
         page += 1
@@ -24,6 +24,10 @@ class Parameter {
     
     func getUserName(username: String) {
         self.username = username
+    }
+    
+    func resetUserName() {
+        self.username = nil
     }
     
     private init() {}

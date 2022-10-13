@@ -11,8 +11,6 @@ import SwiftyJSON
 
 final class AlamofireManager {
     
-    
-    
     // 싱글톤 적용
     static let shared = AlamofireManager()
     
@@ -40,7 +38,7 @@ final class AlamofireManager {
         self.session                                                            // AlamofireManager에서 만든 세션
             .request(SearchRouter.searchPhotos(term: userInput))                // 만들어 놓은 세션에서 request에 접근
             .validate(statusCode: 200...400)                                    // 유효성 검사 - 유효성검사는 요청에 대한 response를 하기 전에 .validate()를 호출함으로써 유효하지 않은 상태 코드나 MIME타입이 있는 경우 response하지 않도록 한다.
-            .responseJSON { [weak self] response in                                         // 유효성 검사를 통과하면 data 응답 받음
+            .responseJSON { [weak self] response in                             // 유효성 검사를 통과하면 data 응답 받음
                 
                 guard let self = self else { return }
                 
@@ -58,7 +56,7 @@ final class AlamofireManager {
                     print("index : \(index), subJson : \(subJson)")
                     
                     // 데이터 파싱
-                    guard let image = subJson["urls"]["full"].string,
+                    guard let image = subJson["urls"]["regular"].string,
                           let username = subJson["user"]["username"].string,
                           let createdAt = subJson["created_at"].string else { return }
                     
@@ -102,13 +100,18 @@ final class AlamofireManager {
                     print("index : \(index), subJson : \(subJson)")
                     
                     // 데이터 파싱
-                    guard let thumbnail = subJson["urls"]["thumb"].string,
-                          let username = subJson["user"]["username"].string else { return }
+                    guard let profileImage = subJson["profile_image"]["large"].string,
+                          let photos = subJson["links"]["photos"].string,
+                          let username = subJson["username"].string,
+                          let name = subJson["name"].string else { return }
+                            
+                    let totalPhotos = subJson["total_photos"].intValue
+                    let likesCount = subJson["total_likes"].intValue
                     
-                    let totalPhotos = subJson["user"]["total_photos"].intValue
-                    let likesCount = subJson["likes"].intValue
+                    let total_photos = self.numberFormatter(number: totalPhotos)
+                    let total_likes = self.numberFormatter(number: likesCount)
                     
-                    let userItem = User(likes: likesCount, username: username, total_photos: totalPhotos, thumbnail: thumbnail)
+                    let userItem = User(username: username, name: name, profileImage: profileImage, total_likes: total_likes, total_photos: total_photos, photos: photos)
                     
                     // 배열에 넣고
                     users.append(userItem)
@@ -119,6 +122,55 @@ final class AlamofireManager {
                     completion(.failure(.noContent))
                 }
             }
+    }
+    
+    // MARK: - Get User's Photos method
+    func getUserPhotos(completion: @escaping (Result<[UserPhotos], CustomError>) -> Void) {
+        
+        self.session                                                            // AlamofireManager에서 만든 세션
+            .request(SearchRouter.searchUserPhotos)                // 만들어 놓은 세션에서 request에 접근
+            .validate(statusCode: 200...400)                                    // 유효성 검사 - 유효성검사는 요청에 대한 response를 하기 전에 .validate()를 호출함으로써 유효하지 않은 상태 코드나 MIME타입이 있는 경우 response하지 않도록 한다.
+            .responseJSON { [weak self] response in                                         // 유효성 검사를 통과하면 data 응답 받음
+                
+                guard let self = self else { return }
+                
+                guard let responseValue = response.value else { return }
+                
+                let responseJson = JSON(responseValue)
+                
+                let jsonArray = responseJson
+                
+                var userPhotos = [UserPhotos]()
+                
+                print("jsonArray.size : \(jsonArray.count)")
+                
+                for (index, subJson) : (String, JSON) in jsonArray {
+                    print("index : \(index), subJson : \(subJson)")
+                    
+                    // 데이터 파싱
+                    guard let photo = subJson["urls"]["regular"].string else { return }
+                    
+                    let userPhotosItem = UserPhotos(image: photo)
+                    
+                    // 배열에 넣고
+                    userPhotos.append(userPhotosItem)
+                }
+                if userPhotos.count > 0 {
+                    completion(.success(userPhotos))
+                } else {
+                    completion(.failure(.noContent))
+                }
+            }
+    }
+}
+
+// MARK: - 숫자 세자리수 단위 콤마
+extension AlamofireManager {
+    func numberFormatter(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: number))!
     }
 }
     

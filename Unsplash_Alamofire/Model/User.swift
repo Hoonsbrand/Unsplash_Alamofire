@@ -8,8 +8,10 @@
 import Foundation
 
 struct User: Codable {
-    var likes: Int
     var username: String
-    var total_photos: Int
-    var thumbnail: String
+    var name: String
+    var profileImage: String
+    var total_likes: String
+    var total_photos: String
+    var photos: String
 }
