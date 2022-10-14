@@ -9,18 +9,22 @@ import UIKit
 import Alamofire
 import Toast_Swift
 import KRProgressHUD
+import DropDown
 
 class HomeVC: BaseVC {
 
     @IBOutlet weak var searchFilterSegment: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var searchIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var photoQualityButton: UIButton!
+    @IBOutlet weak var photoQualityLabel: UILabel!
     
     private var keyboardDissmissTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
     
     private var fetchedPhotos = [Photo]()
     private var fetchedUsers = [User]()
+    private let dropDown = DropDown()
+    private var photoQuality = PhotoQuality.regular.rawValue
     
     // MARK: - override method
     override func viewDidLoad() {
@@ -59,12 +63,28 @@ class HomeVC: BaseVC {
     
     // MARK: - ConfigUI
     fileprivate func configUI() {
+        // DropDown 관련
+        dropDown.dataSource = [PhotoQuality.small.rawValue, PhotoQuality.regular.rawValue, PhotoQuality.full.rawValue]
+        dropDown.anchorView = photoQualityButton
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.cornerRadius = 15
+        dropDown.textFont = UIFont.boldSystemFont(ofSize: 15)
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            // 버튼 누를 시 레이블 변경하기
+        }
+        photoQualityLabel.text! += photoQuality
+        
         self.searchButton.layer.cornerRadius = 10
         self.searchBar.searchBarStyle = .minimal
         
         // 제스처 추가
         self.view.addGestureRecognizer(keyboardDissmissTapGesture)
     }
+    
+    @IBAction func photoQualityButtonTapped(_ sender: UIButton) {
+        dropDown.show()
+    }
+    
     
     // MARK: - prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -306,4 +326,8 @@ extension HomeVC: UIGestureRecognizerDelegate {
             return true
         }
     }
+}
+
+extension HomeVC {
+    
 }

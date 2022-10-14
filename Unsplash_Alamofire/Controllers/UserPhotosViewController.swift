@@ -48,18 +48,6 @@ extension UserPhotosViewController: UICollectionViewDelegate, UICollectionViewDa
         let urlString = userPhotos[indexPath.row].image
         let fileURL = URL(string: urlString)
         
-        // Kingfisher로 받아올 때 이미지 다운로드 속도가 느리고 스크롤시 버벅거림이 발생하였다.
-//        cell.photoCell.kf.setImage(with: fileURL, placeholder: UIImage(systemName: "text.below.photo"))
-        
-        
-        
-        // SDWebImage의 캐시 시스템을 이용한 이미지 로드
-        /*
-         SDWebImage란?
-         이 라이브러리는 url 방식으로 이미지를 받아오는 것을 비동기적을 처리하고 그 받아온 이미지를 캐싱하여 사용할 수 있게 해주는 라이브러리다.
-         그 덕분에 셀이 만들어질때 마다 url 방식으로 이미지를 받아오면서 발생한 속도 문제를 개선할 수 있게 되었다.
-         */
-        
         cell.userPhotoImage.sd_setImage(with: fileURL, placeholderImage: UIImage(systemName: "text.below.photo"))
         
         return cell
@@ -92,7 +80,7 @@ extension UserPhotosViewController: UICollectionViewDelegate, UICollectionViewDa
 extension UserPhotosViewController {
     func loadMoreData()  {
         
-        pageClass.increasePage()
+        parameter.increasePage()
         
         AlamofireManager.shared.getUserPhotos() { [weak self] result in
             guard let self = self else { return }

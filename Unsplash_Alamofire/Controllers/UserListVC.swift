@@ -18,7 +18,7 @@ class UserListVC: BaseVC {
     var fetchedPhotos = [UserPhotos]()
     var username: String?
     
-    // MARK: - override methods
+// MARK: - override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +33,6 @@ class UserListVC: BaseVC {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        //        Parameter.shared.resetUserName()
     }
 }
 
@@ -60,12 +59,11 @@ extension UserListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Parameter.shared.isUserPhotos = true
-        username = users[indexPath.row].username
-        Parameter.shared.username = username
-        getUserPhotos(username: username!)
+        setUsername(name: users[indexPath.row].username)
+        
         userListTableView.deselectRow(at: indexPath, animated: true)
     }
+    
     
     // MARK: - 맨 밑에서 스크롤 시 데이터 로드
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
@@ -88,7 +86,7 @@ extension UserListVC: UITableViewDelegate, UITableViewDataSource {
 extension UserListVC {
     func loadMoreData()  {
         
-        pageClass.increasePage()
+        parameter.increasePage()
         
         AlamofireManager.shared.getUsers(searchTerm: input) { [weak self] result in
             guard let self = self else { return }
@@ -111,6 +109,7 @@ extension UserListVC {
     }
 }
 
+// MARK: - Alamofire 호출
 extension UserListVC {
     func getUserPhotos(username: String) {
         AlamofireManager.shared.getUserPhotos() { [weak self] result in
@@ -135,7 +134,7 @@ extension UserListVC {
                 print("DISPATHGROUP DONE")
                 KRProgressHUD.showSuccess()
                 self.pushVC()
-
+                
             case .failure(let error):
                 self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
                 print("UserListVC - getUserPhotos.failure - error : \(error.rawValue)")
@@ -150,5 +149,15 @@ extension UserListVC {
     
     fileprivate func pushVC() {
         performSegue(withIdentifier: "goToUserPhotos", sender: self)
+    }
+}
+
+// MARK: - 선택된 유저 데이터 세팅
+extension UserListVC {
+    func setUsername(name: String) {
+        self.username = name
+        parameter.isUserPhotos = true
+        parameter.username = username
+        getUserPhotos(username: username!)
     }
 }

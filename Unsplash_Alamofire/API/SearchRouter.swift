@@ -25,7 +25,7 @@ enum SearchRouter: URLRequestConvertible {
     var baseURL: URL {
         if Parameter.shared.isUserPhotos {
             // 특정 유저의 사진을 요청했을 때 URL
-            return URL(string: API.BASE_URL + "users/\(Parameter.shared.username!)/")!
+            return URL(string: API.BASE_URL + "users/\(Parameter.shared.returnUserName())/")!
         } else {
             return URL(string: API.BASE_URL + "search/")!
         }
@@ -65,7 +65,7 @@ enum SearchRouter: URLRequestConvertible {
         switch self {
         case let .searchPhotos(term), let .searchUsers(term):
             return ["query" : term]
-        case let .searchUserPhotos:
+        case .searchUserPhotos:
             return nil
         }
     }

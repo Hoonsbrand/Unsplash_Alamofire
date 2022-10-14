@@ -11,7 +11,7 @@ import Toast_Swift
 class BaseVC: UIViewController {
     
     var input: String = ""
-    var pageClass = Parameter.shared
+    var parameter = Parameter.shared
     
     var vcTitle: String = "" {
         didSet {
@@ -38,7 +38,7 @@ class BaseVC: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(NOTIFICATION.API.AUTH_FAIL), object: nil)
         
         // 페이지 증가하고 뒤로 갈때 다시 1로 초기화
-        pageClass.resetPage()
+        parameter.resetPage()
     }
     
     

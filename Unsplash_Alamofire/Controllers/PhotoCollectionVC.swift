@@ -24,7 +24,6 @@ class PhotoCollectionVC: BaseVC {
         photoCollectionView.dataSource = self
         print("PHTOS : \(photos.count)")
         
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -46,6 +45,7 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
         
         let urlString = photos[indexPath.row].image
         let fileURL = URL(string: urlString)
+        
         
         // Kingfisher로 받아올 때 이미지 다운로드 속도가 느리고 스크롤시 버벅거림이 발생하였다.
 //        cell.photoCell.kf.setImage(with: fileURL, placeholder: UIImage(systemName: "text.below.photo"))
@@ -92,6 +92,7 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
 extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
         let width = collectionView.frame.width
         let height = collectionView.frame.height
         let itemsPerRow: CGFloat = 2
@@ -109,7 +110,7 @@ extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
 extension PhotoCollectionVC {
     func loadMoreData()  {
         
-        pageClass.increasePage()
+        parameter.increasePage()
         
         AlamofireManager.shared.getPhotos(searchTerm: input) { [weak self] result in
             guard let self = self else { return }
@@ -163,3 +164,4 @@ extension PhotoCollectionVC {
         }
     }
 }
+

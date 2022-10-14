@@ -60,22 +60,24 @@
                                             <action selector="onSearchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JZY-0l-aoU"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-cZ-OIM">
-                                        <rect key="frame" x="165" y="309" width="20" height="20"/>
-                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사진 품질 : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikf-7m-n5I">
+                                        <rect key="frame" x="134.66666666666666" y="363" width="81" height="22"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="DnG-Yf-nzr" firstAttribute="top" secondItem="oN0-nd-YvO" secondAttribute="bottom" constant="20" id="5yo-ut-ygY"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ikf-7m-n5I" secondAttribute="bottom" constant="15" id="6P2-u6-Wlc"/>
                                     <constraint firstItem="yj3-oH-mpO" firstAttribute="trailing" secondItem="JJN-kH-Pwa" secondAttribute="trailing" id="9Hb-SL-3cm"/>
                                     <constraint firstItem="JJN-kH-Pwa" firstAttribute="top" secondItem="yj3-oH-mpO" secondAttribute="bottom" constant="16" id="9ga-qi-SwU"/>
-                                    <constraint firstItem="aOZ-cZ-OIM" firstAttribute="centerY" secondItem="DnG-Yf-nzr" secondAttribute="centerY" id="BXK-DA-wt3"/>
+                                    <constraint firstItem="Ikf-7m-n5I" firstAttribute="centerX" secondItem="C8X-o9-FbC" secondAttribute="centerX" id="HXt-Z7-Hza"/>
                                     <constraint firstAttribute="height" constant="400" id="MBj-8J-hun"/>
                                     <constraint firstItem="JJN-kH-Pwa" firstAttribute="leading" secondItem="yj3-oH-mpO" secondAttribute="leading" id="Xuc-Wo-SHE"/>
                                     <constraint firstItem="yj3-oH-mpO" firstAttribute="centerX" secondItem="C8X-o9-FbC" secondAttribute="centerX" id="bAp-Ux-ZX9"/>
                                     <constraint firstItem="oN0-nd-YvO" firstAttribute="top" secondItem="JJN-kH-Pwa" secondAttribute="bottom" constant="18" id="bAw-7C-pD5"/>
-                                    <constraint firstItem="aOZ-cZ-OIM" firstAttribute="centerX" secondItem="DnG-Yf-nzr" secondAttribute="centerX" id="bds-Mm-dgA"/>
                                     <constraint firstItem="DnG-Yf-nzr" firstAttribute="centerX" secondItem="C8X-o9-FbC" secondAttribute="centerX" id="d57-6T-Z2R"/>
                                     <constraint firstItem="yj3-oH-mpO" firstAttribute="top" secondItem="C8X-o9-FbC" secondAttribute="top" constant="8" id="lKX-Y0-yo9"/>
                                     <constraint firstItem="oN0-nd-YvO" firstAttribute="leading" secondItem="C8X-o9-FbC" secondAttribute="leading" id="opF-5k-7A0"/>
@@ -91,12 +93,25 @@
                             <constraint firstItem="C8X-o9-FbC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="xvb-Hg-n3u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="u9q-GT-uuc"/>
+                    <navigationItem key="navigationItem" id="u9q-GT-uuc">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="U2v-Ld-FXh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="QaG-fQ-NGl">
+                                <rect key="frame" x="323" y="4.6666666666666679" width="51" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system"/>
+                                <connections>
+                                    <action selector="photoQualityButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wRG-k9-nJB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="photoQualityButton" destination="QaG-fQ-NGl" id="CBL-2o-Oqk"/>
+                        <outlet property="photoQualityLabel" destination="Ikf-7m-n5I" id="TZ7-3e-4bd"/>
                         <outlet property="searchBar" destination="oN0-nd-YvO" id="ocn-o2-TAQ"/>
                         <outlet property="searchButton" destination="DnG-Yf-nzr" id="2Pq-Sn-rKs"/>
                         <outlet property="searchFilterSegment" destination="JJN-kH-Pwa" id="XbR-zg-Dli"/>
-                        <outlet property="searchIndicator" destination="aOZ-cZ-OIM" id="aqU-At-7xc"/>
                         <segue destination="OTr-e6-5Tk" kind="show" identifier="goToUserListVC" id="gOQ-RI-MtN"/>
                         <segue destination="aoL-Rl-udD" kind="show" identifier="goToPhotoCollectionVC" id="Onp-9Y-cSz"/>
                     </connections>
@@ -336,6 +351,7 @@
     </scenes>
     <resources>
         <image name="UnsplashImage" width="640" height="145.5"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">

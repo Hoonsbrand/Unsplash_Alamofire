@@ -30,5 +30,9 @@ class Parameter {
         self.username = nil
     }
     
+    func returnUserName() -> String {
+        return username ?? ""
+    }
+    
     private init() {}
 }
