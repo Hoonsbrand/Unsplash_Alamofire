@@ -13,6 +13,11 @@ class Parameter {
     var page = 1
     var username: String?
     var isUserPhotos: Bool = false
+    var quality: String {
+        get {
+            return PhotoQuality.shared.getPhotoQuality()
+        }
+    }
     
     func increasePage() {
         page += 1

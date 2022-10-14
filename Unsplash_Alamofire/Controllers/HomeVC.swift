@@ -24,7 +24,7 @@ class HomeVC: BaseVC {
     private var fetchedPhotos = [Photo]()
     private var fetchedUsers = [User]()
     private let dropDown = DropDown()
-    private var photoQuality = PhotoQuality.regular.rawValue
+    private var photoQualityEnum = PhotoQualityEnum.regular
     
     // MARK: - override method
     override func viewDidLoad() {
@@ -64,21 +64,43 @@ class HomeVC: BaseVC {
     // MARK: - ConfigUI
     fileprivate func configUI() {
         // DropDown 관련
-        dropDown.dataSource = [PhotoQuality.small.rawValue, PhotoQuality.regular.rawValue, PhotoQuality.full.rawValue]
+        dropDown.dataSource = [PhotoQualityEnum.small.rawValue, PhotoQualityEnum.regular.rawValue, PhotoQualityEnum.full.rawValue]
         dropDown.anchorView = photoQualityButton
         dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
         dropDown.cornerRadius = 15
         dropDown.textFont = UIFont.boldSystemFont(ofSize: 15)
-        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
-            // 버튼 누를 시 레이블 변경하기
-        }
-        photoQualityLabel.text! += photoQuality
+        photoQualityLabel.text! += photoQualityEnum.rawValue
         
+        setQualityWithDropDown()
+       
         self.searchButton.layer.cornerRadius = 10
         self.searchBar.searchBarStyle = .minimal
         
         // 제스처 추가
         self.view.addGestureRecognizer(keyboardDissmissTapGesture)
+    }
+    
+    private func setQualityWithDropDown() {
+        print("DROP DOWN CALLED")
+        // 버튼 누를 시 레이블 변경하기
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            guard let self = self else { return }
+            
+            var quality = PhotoQuality.shared
+            
+            switch item {
+            case PhotoQualityEnum.small.rawValue:
+                quality.setPhotoQuality(quality: PhotoQualityEnum.small)
+            case PhotoQualityEnum.regular.rawValue:
+                quality.setPhotoQuality(quality: PhotoQualityEnum.regular)
+            case PhotoQualityEnum.full.rawValue:
+                quality.setPhotoQuality(quality: PhotoQualityEnum.full)
+            default:
+                quality.setPhotoQuality(quality: PhotoQualityEnum.regular)
+            }
+            
+            self.photoQualityLabel.text! = "사진 품질 : \(quality.getPhotoQuality())"
+        }
     }
     
     @IBAction func photoQualityButtonTapped(_ sender: UIButton) {
@@ -179,7 +201,7 @@ class HomeVC: BaseVC {
     // 검색버튼 클릭
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedSegmentIndex: \(searchFilterSegment.selectedSegmentIndex)")
-
+        
         callAlamofire()
     }
     

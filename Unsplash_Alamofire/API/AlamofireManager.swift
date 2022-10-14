@@ -11,6 +11,8 @@ import SwiftyJSON
 
 final class AlamofireManager {
     
+    private let quality = PhotoQuality.shared.getPhotoQuality()
+    
     // 싱글톤 적용
     static let shared = AlamofireManager()
     
@@ -54,9 +56,9 @@ final class AlamofireManager {
                 
                 for (index, subJson) : (String, JSON) in jsonArray {
                     print("index : \(index), subJson : \(subJson)")
-                    
+                    print("QUALITY : \(self.quality)")
                     // 데이터 파싱
-                    guard let image = subJson["urls"]["regular"].string,
+                    guard let image = subJson["urls"]["\(self.quality)"].string,
                           let username = subJson["user"]["username"].string,
                           let createdAt = subJson["created_at"].string else { return }
                     
@@ -148,7 +150,7 @@ final class AlamofireManager {
                     print("index : \(index), subJson : \(subJson)")
                     
                     // 데이터 파싱
-                    guard let photo = subJson["urls"]["regular"].string else { return }
+                    guard let photo = subJson["urls"]["\(self.quality)"].string else { return }
                     
                     let userPhotosItem = UserPhotos(image: photo)
                     
