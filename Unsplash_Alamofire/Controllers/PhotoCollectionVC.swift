@@ -43,9 +43,15 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
         
-        let urlString = photos[indexPath.row].image
+        let photoInfo = photos[indexPath.row]
+        
+        let urlString = photoInfo.image
         let fileURL = URL(string: urlString)
         
+        cell.usernameLabel.text = photoInfo.username
+        cell.createdAtLabel.text = "업로드 날짜 : \(photoInfo.createdAt)"
+        cell.likeCountLabel.text = "👍 : \(photoInfo.likesCount)개"
+        cell.profileImage.kf.setImage(with: URL(string: photoInfo.profileImage))
         
         // Kingfisher로 받아올 때 이미지 다운로드 속도가 느리고 스크롤시 버벅거림이 발생하였다.
 //        cell.photoCell.kf.setImage(with: fileURL, placeholder: UIImage(systemName: "text.below.photo"))
@@ -95,9 +101,9 @@ extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
 
         let width = collectionView.frame.width
         let height = collectionView.frame.height
-        let itemsPerRow: CGFloat = 2
+        let itemsPerRow: CGFloat = 1
         let widthPadding = sectionInsets.left * (itemsPerRow + 1)
-        let itemsPerColumn: CGFloat = 3
+        let itemsPerColumn: CGFloat = 1.5
         let heightPadding = sectionInsets.top * (itemsPerColumn + 1)
         let cellWidth = (width - widthPadding) / itemsPerRow
         let cellHeight = (height - heightPadding) / itemsPerColumn

@@ -10,6 +10,8 @@ import Foundation
 struct Photo: Codable {
     var image: String
     var username: String
-    var likesCount: Int
+    var likesCount: String
     var createdAt: String
+    var photoId: String
+    var profileImage: String
 }

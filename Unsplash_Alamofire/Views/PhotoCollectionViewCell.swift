@@ -10,8 +10,8 @@ import UIKit
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoCell: UIImageView!
-    
-    func update(cellImage: UIImage) {
-        photoCell.image = cellImage
-    }
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var createdAtLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
 }

@@ -63,15 +63,8 @@ class HomeVC: BaseVC {
     
     // MARK: - ConfigUI
     fileprivate func configUI() {
-        // DropDown 관련
-        dropDown.dataSource = [PhotoQualityEnum.small.rawValue, PhotoQualityEnum.regular.rawValue, PhotoQualityEnum.full.rawValue]
-        dropDown.anchorView = photoQualityButton
-        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
-        dropDown.cornerRadius = 15
-        dropDown.textFont = UIFont.boldSystemFont(ofSize: 15)
-        photoQualityLabel.text! += photoQualityEnum.rawValue
-        
-        setQualityWithDropDown()
+        // DropDown 설정
+        setupDropDown()
        
         self.searchButton.layer.cornerRadius = 10
         self.searchBar.searchBarStyle = .minimal
@@ -80,12 +73,19 @@ class HomeVC: BaseVC {
         self.view.addGestureRecognizer(keyboardDissmissTapGesture)
     }
     
-    private func setQualityWithDropDown() {
-        print("DROP DOWN CALLED")
+    private func setupDropDown() {
+        
+        dropDown.dataSource = [PhotoQualityEnum.small.rawValue, PhotoQualityEnum.regular.rawValue, PhotoQualityEnum.full.rawValue]
+        dropDown.anchorView = photoQualityButton
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.cornerRadius = 15
+        dropDown.textFont = UIFont.boldSystemFont(ofSize: 15)
+        photoQualityLabel.text! += photoQualityEnum.rawValue
+        
         // 버튼 누를 시 레이블 변경하기
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             guard let self = self else { return }
-            
+            print("DROP DOWN CALLED")
             var quality = PhotoQuality.shared
             
             switch item {
@@ -100,7 +100,10 @@ class HomeVC: BaseVC {
             }
             
             self.photoQualityLabel.text! = "사진 품질 : \(quality.getPhotoQuality())"
+            print("사진 품질 : \(PhotoQuality.shared.getPhotoQuality())")
         }
+        
+        
     }
     
     @IBAction func photoQualityButtonTapped(_ sender: UIButton) {
@@ -348,8 +351,4 @@ extension HomeVC: UIGestureRecognizerDelegate {
             return true
         }
     }
-}
-
-extension HomeVC {
-    
 }

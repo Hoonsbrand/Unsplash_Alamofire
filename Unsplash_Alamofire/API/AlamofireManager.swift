@@ -11,7 +11,7 @@ import SwiftyJSON
 
 final class AlamofireManager {
     
-    private let quality = PhotoQuality.shared.getPhotoQuality()
+    let quality = PhotoQuality.shared
     
     // 싱글톤 적용
     static let shared = AlamofireManager()
@@ -56,15 +56,19 @@ final class AlamofireManager {
                 
                 for (index, subJson) : (String, JSON) in jsonArray {
                     print("index : \(index), subJson : \(subJson)")
-                    print("QUALITY : \(self.quality)")
+                    print("QUALITY : \(self.quality.getPhotoQuality())")
+                    
                     // 데이터 파싱
-                    guard let image = subJson["urls"]["\(self.quality)"].string,
+                    guard let image = subJson["urls"]["\(self.quality.getPhotoQuality())"].string,
                           let username = subJson["user"]["username"].string,
+                          let photoId = subJson["id"].string,
+                          let profileImage = subJson["user"]["profile_image"]["medium"].string,
                           let createdAt = subJson["created_at"].string else { return }
                     
                     let likesCount = subJson["likes"].intValue
+                    let likes = self.numberFormatter(number: likesCount)
                     
-                    let photoItem = Photo(image: image, username: username, likesCount: likesCount, createdAt: createdAt)
+                    let photoItem = Photo(image: image, username: username, likesCount: likes, createdAt: createdAt, photoId: photoId, profileImage: profileImage)
                     
                     // 배열에 넣고
                     photos.append(photoItem)
@@ -150,7 +154,7 @@ final class AlamofireManager {
                     print("index : \(index), subJson : \(subJson)")
                     
                     // 데이터 파싱
-                    guard let photo = subJson["urls"]["\(self.quality)"].string else { return }
+                    guard let photo = subJson["urls"]["\(self.quality.getPhotoQuality())"].string else { return }
                     
                     let userPhotosItem = UserPhotos(image: photo)
                     
