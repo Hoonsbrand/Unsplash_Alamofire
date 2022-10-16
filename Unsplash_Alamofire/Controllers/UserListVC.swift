@@ -55,6 +55,12 @@ extension UserListVC: UITableViewDelegate, UITableViewDataSource {
         cell.totalPhotosLabel.text = "총 사진📷 : \(userInfo.total_photos)장"
         cell.totalLikesLabel.text = "총 좋아요👍 : \(userInfo.total_likes)개"
         
+        cell.userProfileImage.layer.borderWidth = 1
+        cell.userProfileImage.layer.masksToBounds = false
+        cell.userProfileImage.layer.borderColor = UIColor.black.cgColor
+        cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.height/2
+        cell.userProfileImage.clipsToBounds = true
+        
         return cell
     }
     

@@ -9,9 +9,12 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var photoView: UIView!
     @IBOutlet weak var photoCell: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    
+    
 }

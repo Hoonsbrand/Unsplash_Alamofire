@@ -16,6 +16,8 @@ class PhotoCollectionVC: BaseVC {
     
     var photos = [Photo]()
     
+    var currentLongPressedCell: PhotoCollectionViewCell?
+    
     // MARK: - override methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,8 @@ class PhotoCollectionVC: BaseVC {
         photoCollectionView.dataSource = self
         print("PHTOS : \(photos.count)")
         
+        // Long Tap Gesture 호출
+        setupLongGestureRecognizerOnCollection()
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,8 +57,9 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
         cell.likeCountLabel.text = "👍 : \(photoInfo.likesCount)개"
         cell.profileImage.kf.setImage(with: URL(string: photoInfo.profileImage))
         
+        
         // Kingfisher로 받아올 때 이미지 다운로드 속도가 느리고 스크롤시 버벅거림이 발생하였다.
-//        cell.photoCell.kf.setImage(with: fileURL, placeholder: UIImage(systemName: "text.below.photo"))
+        //        cell.photoCell.kf.setImage(with: fileURL, placeholder: UIImage(systemName: "text.below.photo"))
         
         
         
@@ -67,15 +72,33 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
         
         cell.photoCell.sd_setImage(with: fileURL, placeholderImage: UIImage(systemName: "text.below.photo"))
         
+        
+        // 셀 UI설정
+        cell.photoView.layer.cornerRadius = 10
+        cell.photoView.layer.borderWidth = 1.0
+        cell.photoView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        cell.photoView.layer.backgroundColor = UIColor.white.cgColor
+        cell.photoView.layer.shadowColor = UIColor.gray.cgColor
+        cell.photoView.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+        cell.photoView.layer.shadowRadius = 2.0
+        cell.photoView.layer.shadowOpacity = 1.0
+        cell.photoView.layer.masksToBounds = true
+        
+        cell.profileImage.layer.borderWidth = 1
+        cell.profileImage.layer.masksToBounds = false
+        cell.profileImage.layer.borderColor = UIColor.black.cgColor
+        cell.profileImage.layer.cornerRadius = cell.profileImage.frame.height/2
+        cell.profileImage.clipsToBounds = true
+        
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let imageInfo = photos[indexPath.row].image
-        
-        downloadImage(with: imageInfo)
-    }
-    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let imageInfo = photos[indexPath.row].image
+//
+//                downloadImage(with: imageInfo)
+//    }
     
     // MARK: - 맨 밑에서 스크롤 시 데이터 로드
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
@@ -98,7 +121,7 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
 extension PhotoCollectionVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
+        
         let width = collectionView.frame.width
         let height = collectionView.frame.height
         let itemsPerRow: CGFloat = 1
@@ -171,3 +194,73 @@ extension PhotoCollectionVC {
     }
 }
 
+// MARK: - Long Tap Gesture
+extension PhotoCollectionVC: UIGestureRecognizerDelegate {
+    private func setupLongGestureRecognizerOnCollection() {
+        let longPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gestureRecognizer:)))
+        longPressedGesture.minimumPressDuration = 0.5
+        longPressedGesture.delegate = self
+        longPressedGesture.delaysTouchesBegan = true
+        photoCollectionView?.addGestureRecognizer(longPressedGesture)
+    }
+    
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        
+        let location = gestureRecognizer.location(in: photoCollectionView)
+        
+        // 제스처 시작
+        if gestureRecognizer.state == .began {
+            if let indexPath = photoCollectionView.indexPathForItem(at: location) {
+                print("Long press at item began: \(indexPath.row)")
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    guard let self = self else { return }
+                    
+                    if let cell = self.photoCollectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
+                        self.currentLongPressedCell = cell
+                        cell.photoCell.transform = .init(scaleX: 0.9, y: 0.9)
+                    }
+                }
+            }
+            // 손 땔 때
+        } else if gestureRecognizer.state == .ended {
+            if let indexPath = photoCollectionView.indexPathForItem(at: location) {
+                print("Long press at item end: \(indexPath.row)")
+                
+                
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    guard let self = self else { return }
+                    if let cell = self.currentLongPressedCell  {
+                        cell.photoCell.transform = .init(scaleX: 1, y: 1)
+                        
+                        // 사진 저장
+                        if cell == self.photoCollectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
+
+                            let dialog = UIAlertController(title: "사진 저장", message: "사진을 저장하시겠습니까?", preferredStyle: .alert)
+                            let save = UIAlertAction(title: "저장", style: .default) { [weak self] _ in
+                                guard let self = self else { return }
+                                if let indexPath = self.photoCollectionView.indexPathForItem(at: location) {
+                                    let imageInfo = self.photos[indexPath.row].image
+                                    self.downloadImage(with: imageInfo)
+                                }
+                            }
+                            let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+                            dialog.addAction(save)
+                            dialog.addAction(cancel)
+                            self.present(dialog, animated: true, completion: nil)
+                        }
+                    }
+                }
+                
+            }
+        } else {
+            return
+        }
+        
+        let p = gestureRecognizer.location(in: photoCollectionView)
+        
+        if let indexPath = photoCollectionView?.indexPathForItem(at: p) {
+            print("Long press at item: \(indexPath.row)")
+        }
+    }
+}
