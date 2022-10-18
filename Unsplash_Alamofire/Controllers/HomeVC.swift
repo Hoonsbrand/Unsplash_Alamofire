@@ -122,7 +122,6 @@ class HomeVC: BaseVC {
             guard let userInputValue = self.searchBar.text else { return }
             
             nextVC.getVCTitle(userInputValue + "👨‍💻")
-            print("PREPARE")
             nextVC.input = userInputValue
             nextVC.users = self.fetchedUsers
             
@@ -132,7 +131,6 @@ class HomeVC: BaseVC {
             guard let userInputValue = self.searchBar.text else { return }
 
             nextVC.getVCTitle(userInputValue + "🏞")
-            print("PREPARE")
             nextVC.input = userInputValue
             nextVC.photos = self.fetchedPhotos
             
@@ -190,11 +188,11 @@ class HomeVC: BaseVC {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            searchBarTitle = "사진 키워드"
+            searchBarTitle = SEARCH_BAR_TITLE.PHOTO_KEYWORD
         case 1:
-            searchBarTitle = "사용자 이름"
+            searchBarTitle = SEARCH_BAR_TITLE.USER_NAME
         default:
-            searchBarTitle = "사진 키워드"
+            searchBarTitle = SEARCH_BAR_TITLE.PHOTO_KEYWORD
         }
         
         self.searchBar.placeholder = searchBarTitle + " 입력"

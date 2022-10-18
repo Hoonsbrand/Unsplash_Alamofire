@@ -65,10 +65,11 @@ final class AlamofireManager {
                           let profileImage = subJson["user"]["profile_image"]["medium"].string,
                           let createdAt = subJson["created_at"].string else { return }
                     
+                    var createAtString = createdAt.toDate()?.toString()
                     let likesCount = subJson["likes"].intValue
                     let likes = self.numberFormatter(number: likesCount)
                     
-                    let photoItem = Photo(image: image, username: username, likesCount: likes, createdAt: createdAt, photoId: photoId, profileImage: profileImage)
+                    let photoItem = Photo(image: image, username: username, likesCount: likes, createdAt: createAtString ?? "", photoId: photoId, profileImage: profileImage)
                     
                     // 배열에 넣고
                     photos.append(photoItem)
@@ -108,16 +109,15 @@ final class AlamofireManager {
                     // 데이터 파싱
                     guard let profileImage = subJson["profile_image"]["large"].string,
                           let photos = subJson["links"]["photos"].string,
-                          let username = subJson["username"].string,
-                          let name = subJson["name"].string else { return }
-                            
+                          let username = subJson["username"].string else { return }
+                    
                     let totalPhotos = subJson["total_photos"].intValue
                     let likesCount = subJson["total_likes"].intValue
                     
                     let total_photos = self.numberFormatter(number: totalPhotos)
                     let total_likes = self.numberFormatter(number: likesCount)
                     
-                    let userItem = User(username: username, name: name, profileImage: profileImage, total_likes: total_likes, total_photos: total_photos, photos: photos)
+                    let userItem = User(username: username, profileImage: profileImage, total_likes: total_likes, total_photos: total_photos, photos: photos)
                     
                     // 배열에 넣고
                     users.append(userItem)
@@ -131,7 +131,7 @@ final class AlamofireManager {
     }
     
     // MARK: - Get User's Photos method
-    func getUserPhotos(completion: @escaping (Result<[UserPhotos], CustomError>) -> Void) {
+    func getUserPhotos(completion: @escaping (Result<[Photo], CustomError>) -> Void) {
         
         self.session                                                            // AlamofireManager에서 만든 세션
             .request(SearchRouter.searchUserPhotos)                // 만들어 놓은 세션에서 request에 접근
@@ -146,7 +146,7 @@ final class AlamofireManager {
                 
                 let jsonArray = responseJson
                 
-                var userPhotos = [UserPhotos]()
+                var userPhotos = [Photo]()
                 
                 print("jsonArray.size : \(jsonArray.count)")
                 
@@ -154,9 +154,18 @@ final class AlamofireManager {
                     print("index : \(index), subJson : \(subJson)")
                     
                     // 데이터 파싱
-                    guard let photo = subJson["urls"]["\(self.quality.getPhotoQuality())"].string else { return }
+                    guard let image = subJson["urls"]["\(self.quality.getPhotoQuality())"].string,
+                          let username = subJson["user"]["username"].string,
+                          let photoId = subJson["id"].string,
+                          let profileImage = subJson["user"]["profile_image"]["medium"].string,
+                          let createdAt = subJson["created_at"].string else { return }
                     
-                    let userPhotosItem = UserPhotos(image: photo)
+                    let likesCount = subJson["likes"].intValue
+                    let likes = self.numberFormatter(number: likesCount)
+                    
+                    var createAtString = createdAt.toDate()?.toString()
+                    
+                    let userPhotosItem = Photo(image: image, username: username, likesCount: likes, createdAt: createAtString ?? "", photoId: photoId, profileImage: profileImage)
                     
                     // 배열에 넣고
                     userPhotos.append(userPhotosItem)
@@ -179,11 +188,33 @@ extension AlamofireManager {
         return numberFormatter.string(from: NSNumber(value: number))!
     }
 }
-    
-    /*
-     Session을 새로 생성
-     session객체를 만들때 eventMonitors 객체를 주입해주기 위해서 session객체를 새로 생성
-     request를 요청할 땐 보통 AF.request()로 사용하지만, session객체를 이용
-     기존의 AF는 Session.default를 보고있는 형태이므로 session을 새로만들어서 사용해도 무방
-     즉, HomeVC에서 AF.request가 아닌 위에서 정의한 AlamofireManager.shared.session.request()로 접근
-     */
+
+extension String {
+    func toDate() -> Date? { //"yyyy-MM-dd HH:mm:ss"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        if let date = dateFormatter.date(from: self) {
+            return date
+        } else {
+            return nil
+        }
+    }
+}
+
+extension Date {
+    func toString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일 HH시 mm분"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateFormatter.string(from: self)
+    }
+}
+
+/*
+ Session을 새로 생성
+ session객체를 만들때 eventMonitors 객체를 주입해주기 위해서 session객체를 새로 생성
+ request를 요청할 땐 보통 AF.request()로 사용하지만, session객체를 이용
+ 기존의 AF는 Session.default를 보고있는 형태이므로 session을 새로만들어서 사용해도 무방
+ 즉, HomeVC에서 AF.request가 아닌 위에서 정의한 AlamofireManager.shared.session.request()로 접근
+ */

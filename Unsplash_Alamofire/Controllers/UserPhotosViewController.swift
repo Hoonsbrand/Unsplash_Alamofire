@@ -88,7 +88,7 @@ extension UserPhotosViewController {
             switch result {
             case .success(let fetchedPhotos):
                 print("PhotoCollectionVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
-                self.userPhotos.append(contentsOf: fetchedPhotos)
+//                self.userPhotos.append(contentsOf: fetchedPhotos)
                 self.userPhotosCollectionView.reloadData()
                 KRProgressHUD.showSuccess()
                 

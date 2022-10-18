@@ -201,7 +201,7 @@
                     <navigationItem key="navigationItem" id="gti-Yt-NVu"/>
                     <connections>
                         <outlet property="userListTableView" destination="Bcu-mn-KSe" id="dMe-uS-ncD"/>
-                        <segue destination="w6w-kc-2ud" kind="show" identifier="goToUserPhotos" id="2WX-fv-QE3"/>
+                        <segue destination="aoL-Rl-udD" kind="show" identifier="goToUserPhotos" id="hML-hq-rhZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hA6-uB-RfS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -217,7 +217,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-uW-leM">
-                                <rect key="frame" x="0.0" y="143" width="390" height="667"/>
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nl1-Do-LZO">
                                     <size key="itemSize" width="128" height="128"/>
@@ -338,15 +338,6 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdA-vy-4yR">
-                                                            <rect key="frame" x="319" y="10" width="50" height="15"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="Zsl-pj-yHw"/>
-                                                                <constraint firstAttribute="height" constant="15" id="agI-62-PAx"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="gray" image="ellipsis" catalog="system"/>
-                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
@@ -358,9 +349,7 @@
                                                         <constraint firstItem="1X6-eg-f9d" firstAttribute="top" secondItem="hLW-PS-FYQ" secondAttribute="top" constant="10" id="eLp-mg-tze"/>
                                                         <constraint firstItem="e3Y-J1-Jvn" firstAttribute="leading" secondItem="1X6-eg-f9d" secondAttribute="trailing" constant="10" id="gvC-yn-qtZ"/>
                                                         <constraint firstItem="2iW-Vs-1wF" firstAttribute="top" secondItem="e3Y-J1-Jvn" secondAttribute="bottom" constant="10" id="jeU-Fn-fN0"/>
-                                                        <constraint firstItem="QdA-vy-4yR" firstAttribute="top" secondItem="1X6-eg-f9d" secondAttribute="top" id="lHz-HN-Zmo"/>
                                                         <constraint firstItem="2iW-Vs-1wF" firstAttribute="centerX" secondItem="hLW-PS-FYQ" secondAttribute="centerX" id="w6G-qx-UWl"/>
-                                                        <constraint firstItem="2iW-Vs-1wF" firstAttribute="trailing" secondItem="QdA-vy-4yR" secondAttribute="trailing" id="zya-jW-81d"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -421,9 +410,11 @@
             <point key="canvasLocation" x="130.76923076923077" y="-28.436018957345969"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hML-hq-rhZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="UnsplashImage" width="640" height="145.5"/>
-        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="photo" catalog="system" width="128" height="93"/>

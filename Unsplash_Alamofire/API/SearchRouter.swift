@@ -38,7 +38,7 @@ enum SearchRouter: URLRequestConvertible {
         case .searchPhotos, .searchUsers, .searchUserPhotos:
             return .get
             
-            // 두가지 이상 방식
+            // 두가지 이상 방식일 때
             //        switch self {
             //        case .searchPhotos:
             //            return .get
@@ -86,6 +86,7 @@ enum SearchRouter: URLRequestConvertible {
         // 제일 밑 주석 참고
         request = try URLEncodedFormParameterEncoder().encode(parameters, into: request)
         
+        // 두가지 이상 방식일 때
         //        switch self {
         //        case let .get(parameters):
         //            request = try URLEncodedFormParameterEncoder().encode(parameters, into: request)
@@ -93,6 +94,7 @@ enum SearchRouter: URLRequestConvertible {
         //            request = try JSONParameterEncoder().encode(parameters, into: request)
         //        }
         //
+        
         // request 객체 return
         return request
     }

@@ -13,6 +13,7 @@ class Parameter {
     var page = 1
     var username: String?
     var isUserPhotos: Bool = false
+    
     var quality: String {
         get {
             return PhotoQuality.shared.getPhotoQuality()
@@ -37,6 +38,10 @@ class Parameter {
     
     func returnUserName() -> String {
         return username ?? ""
+    }
+    
+    func resetIsUserPhotos() {
+        self.isUserPhotos = false
     }
     
     private init() {}

@@ -15,7 +15,7 @@ class UserListVC: BaseVC {
     
     var users = [User]()
     
-    var fetchedPhotos = [UserPhotos]()
+    var fetchedPhotos = [Photo]()
     var username: String?
     
 // MARK: - override methods
@@ -33,6 +33,7 @@ class UserListVC: BaseVC {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+//        print("USER LIST viewDidDisappear - \(nextVC.isFromUserList)")
     }
 }
 
@@ -149,12 +150,14 @@ extension UserListVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! UserPhotosViewController
-        nextVC.userPhotos = self.fetchedPhotos
+        let nextVC = segue.destination as! PhotoCollectionVC
+        nextVC.photos = self.fetchedPhotos
+        nextVC.isFromUserList = true
+        print("USER LIST PREPARE - \(nextVC.isFromUserList)")
     }
     
     fileprivate func pushVC() {
-        performSegue(withIdentifier: "goToUserPhotos", sender: self)
+        performSegue(withIdentifier: SEGUE_ID.USER_PHOTOS_VC, sender: self)
     }
 }
 

@@ -15,8 +15,8 @@ class PhotoCollectionVC: BaseVC {
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
     var photos = [Photo]()
-    
     var currentLongPressedCell: PhotoCollectionViewCell?
+    var isFromUserList: Bool = false
     
     // MARK: - override methods
     override func viewDidLoad() {
@@ -28,6 +28,8 @@ class PhotoCollectionVC: BaseVC {
         
         // Long Tap Gesture 호출
         setupLongGestureRecognizerOnCollection()
+        
+        print("PHOTOCOLLECTIONVC viewDidLoad - \(isFromUserList)")
     }
     
     override func viewDidLayoutSubviews() {
@@ -35,6 +37,16 @@ class PhotoCollectionVC: BaseVC {
         
         // 디바이스 회전시 layout이 망가지는 상황을 방지
         photoCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // isFromUserList 초기화
+        isFromUserList = false
+        
+        // Parameter의 UserPhotos를 false로 리셋 -> 리셋을 안해주고 앞에서 유저의 사진을 클릭한 상태면 라우터가 바뀌어서 잘못된 호출로 404에러가 뜬다.
+        parameter.resetIsUserPhotos()
     }
 }
 
@@ -45,7 +57,7 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL.PHOTO_CELL, for: indexPath) as! PhotoCollectionViewCell
         
         let photoInfo = photos[indexPath.row]
         
@@ -70,7 +82,7 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
          그 덕분에 셀이 만들어질때 마다 url 방식으로 이미지를 받아오면서 발생한 속도 문제를 개선할 수 있게 되었다.
          */
         
-        cell.photoCell.sd_setImage(with: fileURL, placeholderImage: UIImage(systemName: "text.below.photo"))
+        cell.photoCell.sd_setImage(with: fileURL, placeholderImage: UIImage(systemName: LOADING_PHOTO.BELOW_PHOTO))
         
         
         // 셀 UI설정
@@ -93,12 +105,6 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
         
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let imageInfo = photos[indexPath.row].image
-//
-//                downloadImage(with: imageInfo)
-//    }
     
     // MARK: - 맨 밑에서 스크롤 시 데이터 로드
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
@@ -141,21 +147,43 @@ extension PhotoCollectionVC {
         
         parameter.increasePage()
         
-        AlamofireManager.shared.getPhotos(searchTerm: input) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let fetchedPhotos):
-                print("PhotoCollectionVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
-                self.photos.append(contentsOf: fetchedPhotos)
-                self.photoCollectionView.reloadData()
-                KRProgressHUD.showSuccess()
+        if isFromUserList {
+            AlamofireManager.shared.getUserPhotos() { [weak self] result in
+                guard let self = self else { return }
                 
-            case .failure(let error):
+                switch result {
+                case .success(let fetchedPhotos):
+                    print("PhotoCollectionVC - getUserPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
+                    self.photos.append(contentsOf: fetchedPhotos)
+                    self.photoCollectionView.reloadData()
+                    KRProgressHUD.showSuccess()
+                    
+                case .failure(let error):
+                    
+                    print("PhotoCollectionVC - getUserPhotos.failure - error : \(error.rawValue)")
+                    KRProgressHUD.dismiss() {
+                        self.view.makeToast("\(CustomError.endOfList.rawValue)", duration: 1.0, position: .center)
+                    }
+                }
                 
-                print("PhotoCollectionVC - getPhotos.failure - error : \(error.rawValue)")
-                KRProgressHUD.dismiss() {
-                    self.view.makeToast("\(CustomError.endOfList.rawValue)", duration: 1.0, position: .center)
+            }
+        } else {
+            AlamofireManager.shared.getPhotos(searchTerm: input) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let fetchedPhotos):
+                    print("PhotoCollectionVC - getPhotos.success - fetchedPhotos.count : \(fetchedPhotos.count)")
+                    self.photos.append(contentsOf: fetchedPhotos)
+                    self.photoCollectionView.reloadData()
+                    KRProgressHUD.showSuccess()
+                    
+                case .failure(let error):
+                    
+                    print("PhotoCollectionVC - getPhotos.failure - error : \(error.rawValue)")
+                    KRProgressHUD.dismiss() {
+                        self.view.makeToast("\(CustomError.endOfList.rawValue)", duration: 1.0, position: .center)
+                    }
                 }
             }
         }

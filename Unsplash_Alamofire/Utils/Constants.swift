@@ -10,6 +10,11 @@ import Foundation
 enum SEGUE_ID {
     static let USER_LIST_VC = "goToUserListVC"
     static let PHOTO_COLLECTION_VC = "goToPhotoCollectionVC"
+    static let USER_PHOTOS_VC = "goToUserPhotos"
+}
+
+enum CELL {
+    static let PHOTO_CELL = "photoCell"
 }
 
 enum API {
@@ -21,6 +26,15 @@ enum NOTIFICATION {
     enum API {
         static let AUTH_FAIL = "authentication_fail"
     }
+}
+
+enum SEARCH_BAR_TITLE {
+    static let PHOTO_KEYWORD = "사진 키워드"
+    static let USER_NAME = "사용자 이름"
+}
+
+enum LOADING_PHOTO {
+    static let BELOW_PHOTO = "text.below.photo"
 }
 
 extension Bundle {

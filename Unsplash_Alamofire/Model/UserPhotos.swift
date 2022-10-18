@@ -9,4 +9,7 @@ import Foundation
 
 struct UserPhotos: Codable {
     var image: String
+    var profileImage: String
+    var createdAt: String
+    var likes: String
 }

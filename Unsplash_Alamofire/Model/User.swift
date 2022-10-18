@@ -9,7 +9,6 @@ import Foundation
 
 struct User: Codable {
     var username: String
-    var name: String
     var profileImage: String
     var total_likes: String
     var total_photos: String
