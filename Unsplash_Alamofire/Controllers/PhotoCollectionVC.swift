@@ -71,7 +71,7 @@ extension PhotoCollectionVC: UICollectionViewDelegate, UICollectionViewDataSourc
         
         
         // Kingfisher로 받아올 때 이미지 다운로드 속도가 느리고 스크롤시 버벅거림이 발생하였다.
-        //        cell.photoCell.kf.setImage(with: fileURL, placeholder: UIImage(systemName: "text.below.photo"))
+        // cell.photoCell.kf.setImage(with: fileURL, placeholder: UIImage(systemName: "text.below.photo"))
         
         
         

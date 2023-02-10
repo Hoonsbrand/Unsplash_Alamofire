@@ -208,6 +208,8 @@ class HomeVC: BaseVC {
     
     // MARK: - Call Alamofire method
     private func callAlamofire() {
+        KRProgressHUD.show()
+        
         guard let userInput = self.searchBar.text else { return }
         
         switch searchFilterSegment.selectedSegmentIndex {

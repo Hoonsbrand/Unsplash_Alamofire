@@ -208,67 +208,6 @@
             </objects>
             <point key="canvasLocation" x="2347.6923076923076" y="-270.14218009478674"/>
         </scene>
-        <!--User Photos View Controller-->
-        <scene sceneID="XYS-ob-LXF">
-            <objects>
-                <viewController id="w6w-kc-2ud" customClass="UserPhotosViewController" customModule="Unsplash_Alamofire" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8NM-9d-BKk">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-uW-leM">
-                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nl1-Do-LZO">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userPhotoCell" id="bE2-5o-KcW" customClass="UserPhotosCollectionViewCell" customModule="Unsplash_Alamofire" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OJR-92-njk">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8GM-dg-7ln">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="8GM-dg-7ln" secondAttribute="bottom" id="9gO-Pj-kG1"/>
-                                                <constraint firstItem="8GM-dg-7ln" firstAttribute="leading" secondItem="OJR-92-njk" secondAttribute="leading" id="DjU-K3-DJr"/>
-                                                <constraint firstItem="8GM-dg-7ln" firstAttribute="top" secondItem="OJR-92-njk" secondAttribute="top" id="Xvg-EI-cF8"/>
-                                                <constraint firstAttribute="trailing" secondItem="8GM-dg-7ln" secondAttribute="trailing" id="YFw-WP-dqU"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <connections>
-                                            <outlet property="userPhotoImage" destination="8GM-dg-7ln" id="576-8s-d9B"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Mdx-GW-Mq8"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="5eI-uW-leM" firstAttribute="leading" secondItem="Mdx-GW-Mq8" secondAttribute="leading" id="CUM-5i-tpP"/>
-                            <constraint firstItem="Mdx-GW-Mq8" firstAttribute="trailing" secondItem="5eI-uW-leM" secondAttribute="trailing" id="bDf-RM-dpJ"/>
-                            <constraint firstItem="5eI-uW-leM" firstAttribute="top" secondItem="Mdx-GW-Mq8" secondAttribute="top" id="qgS-q6-fJq"/>
-                            <constraint firstItem="Mdx-GW-Mq8" firstAttribute="bottom" secondItem="5eI-uW-leM" secondAttribute="bottom" id="voR-U5-eKs"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="V7h-Ss-Oo5"/>
-                    <connections>
-                        <outlet property="userPhotosCollectionView" destination="5eI-uW-leM" id="37N-uo-afn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SnI-Yo-ffP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3310.7692307692305" y="-270.14218009478674"/>
-        </scene>
         <!--Photo CollectionVC-->
         <scene sceneID="Vjs-jZ-SfB">
             <objects>
